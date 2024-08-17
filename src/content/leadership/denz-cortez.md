@@ -1,8 +1,8 @@
 ---
-title: GREGORIO ADVINCULA Jr.
+title: DENNIS CORTEZ
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/jun.jpg
-img_alt: GREGORIO ADVINCULA Jr.
+img: /assets/leaders/denz.jpg
+img_alt: Dennis Cortez
 description: |
   Church Deacon / Preacher
 tags:
@@ -15,10 +15,12 @@ tags:
 
 > He can help you Grow Spiritualy. 
 
+> work as a Social welfare staff at DSWD
+
 > a faithful servant.
 
 > a father of his two kids
 
-> a loving husband of <a href="/leadership/maam-letty/">Letty Advincula.</a> 
+> a loving husband of <a href="/leadership/maam-clarissa/">Clarissa Cortez.</a> 
 
-> Lives in Mahayay, Sibagat Agusan Del Sur
+> Lives in Sibagat, Agusan Del Sur
