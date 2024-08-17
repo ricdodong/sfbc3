@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import MinistriesPreview from '../components/MinistriesPreview.astro';
+import Hero from '../components/Hero.astro';
+import Grid from '../components/Grid.astro';
+
+const ministries = (await getCollection('ministries')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<BaseLayout
+	title="Ministries"
+	description="Learn about SibagatFBC's most recent ministries"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Ministries"
+				tagline="The work of our ministries is not an easy task. To fulfill these missions, God has sent His workers to guide us, train us all and find more lost souls. as it is said in (Ephesians 4:11-16), they are one of the reasons why we know Who and What God is. Our Pastors are not just there on their own. They are the gift from our Holy God to our local church. That is why we are so thankful to have our Pastors/Workers in our Church."
+				align="start"
+			/>
+			<Grid variant="offset">
+				{
+					ministries.map((ministries) => (
+						<li>
+							<MinistriesPreview ministries={ministries} />
+						</li>
+					))
+				}
+			</Grid>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>

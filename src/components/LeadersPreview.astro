@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	leadership: CollectionEntry<'leadership'>;
+}
+
+const { data, slug } = Astro.props.leadership;
+---
+
+<a class="card" href={`/leadership/${slug}`}>
+	<div class="placeholder"> <img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" /></div>
+	<span class="name">{data.title}</span>
+	<span class="position">{data.description}</span>
+
+</a>
+
+<style>
+	.placeholder {
+		height: 17em;
+		width: 15em;
+	}
+	.card {
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		grid-gap: 0px;
+		height: 24rem;
+		width: 17rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 0.55rem;
+		overflow: hidden;
+		box-shadow: var(--shadow-sm);
+		text-decoration: none;
+		font-family: var(--font-brand);
+		font-size: var(--text-md);
+		font-weight: 300;
+		transition: box-shadow var(--theme-transition);
+		align-items: center;
+		text-align: center;
+		align-items: center;
+	}
+
+	.card:hover {
+		box-shadow: var(--shadow-md);
+	}
+	img {
+		grid-area: 1 / 1 / 1 / 1;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.name {
+		grid-area: 2 / 1 / 2 / 1;
+		background: var(--gray-999);
+		color: var(--gray-200);
+		margin-top: -20px;
+		padding: 5px;
+	}
+	.position {
+		grid-area: 3 / 1 / 3 / 1;
+		background: var(--gray-999);
+		color: var(--gray-200);
+		font-size: var(--text-sm);
+		text-align: center;
+		padding-bottom: 7px;
+	
+	}
+
+
+	@media (min-width: 50em) {
+		.card {
+			height: 22rem;
+			border-radius: 1.5rem;
+		}
+
+		.name {
+			border-radius: 0;
+		}
+		.position {
+			border-radius: 0;
+		}
+	}
+</style>

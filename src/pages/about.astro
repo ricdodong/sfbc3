@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout title="About | SibagatFBC" description="About Sibagat Fundamental Baptist Church">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="About"
+				tagline="Sibagat Fundamental Baptist Church is a Christ believer base on the bible. You can determine us by what we do and what we believe. Furthermore explanation, please see the following statements below;"
+			>
+				<img
+					width="1553"
+					height="873"
+					src="/assets/about.jpeg"
+					alt="SibagatFBC Family"
+				/>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">What we believe?</h2>
+				<div class="content">
+					<p><b>The Scriptures</b></p>
+					<p>We believe that the Holy Bible is God's infallible inerrant word supernaturally and verbally inspired in totality, through the Holy Men</p>
+					<br/>
+					<p><b>The Deity of Christ</b></p>			
+					<p>Jesus Christ is the second person of the God head. He is co-existent, co-equal and co-eternal with God the Father.</p>
+					<br/>
+					<p><b>Holy Spirit</b></p>			
+					<p>We believe that the Holy Spirit is a Divine Person, equal with God the Father and God the Son, and of the same nature.</p>
+					<br/>
+					<p><b>The Virgin Birth</b></p>			
+					<p>We believe that Jesus Christ was begotten of the Holy Ghost in a miraculous manner, born of Mary, a virgin, as no other man was ever born or can ever be born of a women.</p>
+					<p><i>Luke 1:46-47</i></p>
+					<br/>
+					<p><b>The Purpose of God</b></p>			
+					<p>Election and Predestination are according to God's fore-knowledge of man's response to the conviction of the Spirit of God.</p>
+					<p><i>1 Peter 1:2</i></p>
+					<br/>
+					<p><b>Security of Believer</b></p>			
+					<p>We believe that ones a person has been born again into the family of God by faith in Jesus Christ as savior, it is impossible for him to lose his salvation. He is kept saved by the power of God into eternal salvation.</p>
+					<p><i>1 Pet 1:4-5, John 10:28</i></p>
+					<br/>
+					<p><b>Church</b></p>			
+					<p>The church is the body of Christ composed of true believers in the Lord Jesus Christ.</p>
+					<br/>
+					<p><b>Officers</b></p>			
+					<p>The only officers in a true church are Pastors; also called Bishops, 1 Tim 3:1, Elders and Over Seers; and Deacons; and Servants;, who are appointed by the church for spiritual leadership and service.</p>
+					<br/>
+					<p><b>Mission</b></p>			
+					<p>We believe that the command to give the Gospel to the world is clear and unmistakable and that this commission is given to the churches;</p>
+					<p><i>Acts 1:8; 13:1-5</i></p>
+					<br/>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Self Governing Church</h2>
+				<div class="content">
+					<p>Sibagat Fundamental Baptist Church is a Self Governing Church with no external hierarchy.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Bible Centered Church</h2>
+				<div class="content">
+					<p>Sibagat Fundamental Baptist Church is a bible believing, teaching and obeying. Psalms 138:2.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Accurately interpreting the Bible</h2>
+				<div class="content">
+					<p>The Bible has only one correct interpretation, therefore it is not of any private interpretation; 2 Peter 1:20.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Believers baptism by immersion, not infants sprinkling</h2>
+				<div class="content">
+					<p>Baptism means to dip or immerse and pictures the Gospel of Christ’s death, burial and resurrection; Acts 8:37, Mark 1:9-11.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Soul Winning and Missionary Minded</h2>
+				<div class="content">
+					<p>Sibagat Fundamental Baptist Church takes the Great commission seriously as we are accountable to Christ to be fishers of men; Matthew 4:19, Matthew 28:19-20.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Purity of Life</h2>
+				<div class="content">
+					<p>Separation from worldliness and sin. A commitment to Holiness, God and Truth.</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import OutreachPreview from '../components/OutreachPreview.astro';
+import Hero from '../components/Hero.astro';
+import Grid from '../components/Grid.astro';
+
+const outreach = (await getCollection('outreach')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<BaseLayout
+	title="Our Outreaches | SibagatFBC"
+	description="Learn about Sibagat Fundamental Baptist Church's most recent outreaches"
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Our Outreaches"
+				tagline="Our vision is to serve God, which is why we endeavor to share the gospel and help lost souls believe, receive, and serve Him as well."
+				align="start"
+			/>
+			<Grid variant="offset">
+				{
+					outreach.map((outreach) => (
+						<li>
+							<OutreachPreview outreach={outreach} />
+						</li>
+					))
+				}
+			</Grid>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
