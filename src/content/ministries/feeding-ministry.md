@@ -17,7 +17,7 @@ tags:
  
 ![Feeding Ministry](../../../public/assets/ministries/feeding/childrens-ministry-13-feeding.jpg)
 
-![Feeding Ministry](../../../public/assets/ministries/feeding/childrens-ministry-13-feeding2.jpg.jpg)
+![Feeding Ministry](../../../public/assets/ministries/feeding/childrens-ministry-13-feeding2.jpg)
 
 ![Feeding Ministry](../../../public/assets/ministries/feeding/feeding-ministry-elrio.jpg)
 
