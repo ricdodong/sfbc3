@@ -39,13 +39,13 @@ We offer experiences that are developmentally appropriate, involving and engagin
 
 ![Childrens Ministry - Elrio.](../../../public/assets/ministries/childrens/childrens-ministry-elrio2.jpg)
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-elrio.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-elrio.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-elrio2.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-elrio2.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-elrio3.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-elrio3.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-elrio4.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-elrio4.mp4" type="video/mp4"></video></center>
 
 <br/>
 <br/>
@@ -59,13 +59,13 @@ We offer experiences that are developmentally appropriate, involving and engagin
 
 ![Childrens Ministry - Elrio.](../../../public/assets/ministries/childrens/childrens14.jpg)
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-p13-2.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-p13-2.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-p13-3.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-p13-3.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-p13-1.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-p13-1.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-p13.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-p13.mp4" type="video/mp4"></video></center>
 
 <br/>
 <br/>
@@ -91,6 +91,6 @@ We offer experiences that are developmentally appropriate, involving and engagin
 
 ![Childrens Ministry - Sibagat](../../../public/assets/ministries/childrens/childrens-sundayschool6.jpg)
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-sibagat2.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-sibagat2.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="../../../public/assets/ministries/childrens/childrens-ministry-sibagat.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/ministries/childrens/childrens-ministry-sibagat.mp4" type="video/mp4"></video></center>
