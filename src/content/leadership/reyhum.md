@@ -15,11 +15,14 @@ tags:
 
 > He can help you Grow Spiritualy. 
 
-- a son of Mr. and Mrs. <a href="/leadership/brod-junior/">Gregorio Advincula Jr.</a> 
-- a faithful servant.
-- a father of his two kids
-- a loving husband of <a href="/leadership/maam-jay-ann/">Jay Ann Advincula.</a> 
+> a son of Mr. and Mrs. <a href="/leadership/brod-junior/">Gregorio Advincula Jr.</a> 
 
-### Studied at AMA Computer College
+> a faithful servant.
 
-### Lives in Butuan City, Agusan del norte
+> a father of his two kids
+
+> a loving husband of <a href="#">Alcamae Advincula.</a> 
+
+> Studied at AMA Computer College
+
+> Lives in Butuan City, Agusan del norte

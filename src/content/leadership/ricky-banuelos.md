@@ -11,15 +11,18 @@ tags:
   - Serving God
 ---
 
-## Church Deacon / Preacher
+## Church Deacon / Musician
 
 > He can help you Grow Spiritualy. 
 
-- a son of Mr. and Mrs. <a href="#">Douglas O. Banuelos.</a> 
-- a faithful servant.
-- a father of his three kids
-- a loving husband of <a href="#">Algen R. Banuelos.</a> 
+> a son of Mr. and Mrs. <a href="#">Douglas O. Banuelos.</a> 
 
-### Studied at DJEMFCST Dinagat Islands
+> a faithful servant.
 
-### Lives in Sibagat, Agusan del Sur
+> a father of his three kids
+
+> a loving husband of <a href="#">Algen R. Banuelos.</a> 
+
+> Studied at DJEMFCST Dinagat Islands
+
+> Lives in Sibagat, Agusan del Sur
