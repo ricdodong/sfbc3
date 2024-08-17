@@ -1,24 +1,3 @@
-Skip to content
-Navigation Menu
-ricdodong
-/
-sfbc-main
-
-Type / to search
-Code
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-Deploy Astro site to Pages
-Deploy Astro site to Pages #44
-Jobs
-Run details
-Workflow file for this run
-.github/workflows/deploy.yml at d5e0bc7
 # Sample workflow for building and deploying an Astro site to GitHub Pages
 #
 # To get started with Astro see: https://docs.astro.build/en/getting-started/
@@ -107,4 +86,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
-u · ricdodong/sfbc-main@d5e0bc7
