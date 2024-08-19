@@ -1,6 +1,6 @@
 ---
 title: ELVEN B. LUMALAD
-publishDate: 2022-12-08 00:00:00
+publishDate: 2023-12-08 00:00:00
 img: /assets/leaders/pastor.jpg
 img_alt: pastor Elven
 description: |
