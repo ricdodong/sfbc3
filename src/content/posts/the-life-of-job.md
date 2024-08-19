@@ -1,7 +1,7 @@
 ---
 title: The Life of Job
 publishDate: 2024-18-08 00:00:00
-img: /assets/posts/1675398225985.webp
+img: /assets/posts/job.png
 img_alt: The Life of Job
 description: |
   A Testimony of Faith and Perseverance
