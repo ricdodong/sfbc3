@@ -68,4 +68,5 @@ Heavenly Father, we thank You for the example of Job. Help us to trust You in al
 Amen.
 
 </br>
+
 > Sunday School Message: Bro. <a href="/leadership/reyhum/">Reyhum Advincula</a>
