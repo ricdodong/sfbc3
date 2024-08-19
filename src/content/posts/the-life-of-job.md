@@ -62,3 +62,5 @@ The profound story of Job, a man whose life exemplifies unwavering faith and per
 - Let us be encouraged to remain faithful in the face of adversity, trusting in God’s sovereignty and goodness.
 
 **Closing Prayer:**
+
+> Sunday School Message: Bro. <a href="/leadership/reyhum/">Reyhum Advincula</a>
