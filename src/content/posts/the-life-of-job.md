@@ -63,4 +63,7 @@ The profound story of Job, a man whose life exemplifies unwavering faith and per
 
 **Closing Prayer:**
 
+Heavenly Father, we thank You for the example of Job. Help us to trust You in all circumstances, knowing that You are with us through every trial. Strengthen our faith and help us to remain steadfast in Your love. In Jesus’ name, we pray. Amen.
+
+
 > Sunday School Message: Bro. <a href="/leadership/reyhum/">Reyhum Advincula</a>
