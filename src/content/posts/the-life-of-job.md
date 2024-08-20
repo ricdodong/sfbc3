@@ -11,9 +11,16 @@ tags:
   - Bible
   - Bread of Life
 ---
-
 > "Scripture Reading: Job 1:1-22; Job 42:1-17"
 
+**Please click the player below to listen this article.**
+
+<audio controls>
+  <source src="../../../public/assets/posts/sounds/theLifeofJob.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<br>
 
 **Introduction:**
 
