@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout2.astro";
 
 // Component Imports
 import CallToAction from "../components/CallToAction.astro";
@@ -14,9 +14,11 @@ import PostsPreview from "../components/PostsPreview.astro";
 import MinistriesPreview from "../components/MinistriesPreview.astro";
 // Page section components
 import ContactCTA from "../components/ContactCTA.astro";
-import Skills from "../components/Skills.astro";
+import Homeslide from "../components/homeslide.astro";
 import OutreachPreview from "../components/OutreachPreview.astro";
 import LeadersPreview from "../components/LeadersPreview.astro";
+import { Image } from 'astro:assets';
+import logo from '../../public/sfbc-logo1-white.png';
 // Content Fetching: List four most recent posts projects
 const posts = (await getCollection("posts"))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
@@ -37,43 +39,48 @@ const leadership = (await getCollection("leadership"))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 15);
 
+const textLinks: { label: string; href: string }[] = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Posts', href: '/posts/' },
+	{ label: 'Ministries', href: '/ministries/'},
+	{ label: 'Outreach', href: '/outreach/'},
+	{ label: 'About', href: '/about/' },
+];
+
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
 
 <BaseLayout>
 	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
-				<Hero
-					title="Hello, welcome to our small church's website :)"
-					tagline="We are glad to share you the Word of God from the Bible."
-					align="start"
-				>
-					<div class="roles">
-						<Pill><Icon icon="bible-logo" size="1.33em" color="white" /> Word of God</Pill
-						>
-						<Pill
-							><Icon icon="bible-logo" size="1.33em" /> Faith</Pill
-						>
-						<Pill
-							><Icon icon="pencil-line" size="1.33em" /> Prayer</Pill
-						>
-					</div>
-				</Hero>
+		<header class="header">
+			<a href="/" ><Image src={logo} alt="Sibagat Fundamental Baptist Church" width={200} /></a>
+			<div class="menu-btn">
+			  <!-- <img class="menu-btn_img" src="assets/imagens/menu-alt.svg" alt="menu button"> -->
+			</div>
+			<div class="navegation">
 
-				<img
-					alt="Sibagat Fundamental Baptist Church"
-					width="480"
-					height="620"
-					src="/assets/sfbc-bg.jpg"
-				/>
-			</header>
+			  <div class="navegation-items">
+				{
+				textLinks.map(({ label, href }) => (
+							<a
+							href={href}
+						>
+							{label}
+						</a>
+									  ))
+									}
+			  </div>
 
-			<Skills />
+			</div>
+		</header>
+
+		<Homeslide />
+		<div id="main" class="wrapper stack gap-5 lg:gap-5">
+
 		</div>
 
-		<main class="wrapper stack gap-20 lg:gap-48">
+		<main  class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Recent Posts</h3>

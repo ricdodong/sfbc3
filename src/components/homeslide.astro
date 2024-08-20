@@ -1,0 +1,96 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section class="home">
+	<video src="/assets/bgvideos/video1-wonderfulIsland.mp4" class="video-slide active" autoplay muted loop></video>
+	<video src="/assets/bgvideos/video2-campingJoy.mp4" class="video-slide" autoplay muted loop></video>
+	<video src="/assets/bgvideos/video3-adventureOffRoad.mp4" class="video-slide" autoplay muted loop></video>
+	<video src="/assets/bgvideos/video4-roadTrip.mp4" class="video-slide" autoplay muted loop></video>
+	<video src="/assets/bgvideos/video5-feelNature.mp4" class="video-slide" autoplay muted loop></video>
+	<div class="content active">
+	  <h1>Hello,<br><span>welcome :)</span></br></h1>
+	  <p>We are glad that you visited our simple church's website.</p>
+	  <a href="#main">Read More</a>
+	</div>
+	<div class="content">
+	  <h1>Camping.<br><span>Enjoy</span></br></h1>
+	  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet voluptatum consectetur quae similique animi alias natus! Voluptates, illum aut quae, enim, veritatis iusto ducimus dolores minima vitae totam rerum.</p>
+	  <a href="#">Read More</a>
+	</div>
+	<div class="content">
+	  <h1>Adventures.<br><span>Off Road</span></br></h1>
+	  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet voluptatum consectetur quae similique animi alias natus! Voluptates, illum aut quae, enim, veritatis iusto ducimus dolores minima vitae totam rerum.</p>
+	  <a href="#">Read More</a>
+	</div>
+	<div class="content">
+	  <h1>Road Trip.<br><span>Together</span></br></h1>
+	  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet voluptatum consectetur quae similique animi alias natus! Voluptates, illum aut quae, enim, veritatis iusto ducimus dolores minima vitae totam rerum.</p>
+	  <a href="#">Read More</a>
+	</div>
+	<div class="content">
+	  <h1>Feel Nature.<br><span>Relax</span></br></h1>
+	  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet voluptatum consectetur quae similique animi alias natus! Voluptates, illum aut quae, enim, veritatis iusto ducimus dolores minima vitae totam rerum.</p>
+	  <a href="#">Read More</a>
+	</div>
+
+	<div class="media-icons">
+	  <a href="https://facebook.com/SibagatFBC"><i class="fab fa-facebook"></i></a>
+	  <a href="https://www.youtube.com/@SibagatFBC"><i class="fab fa-youtube"></i></a>
+	  <a href="https://tiktok.com/@SibagatFBC"><i class="fab fa-tiktok"></i></a>
+	</div>
+	<div class="slider-navegation">
+	  <div class="nav-btn active"></div>
+	  <div class="nav-btn"></div>
+	  <div class="nav-btn"></div>
+	  <div class="nav-btn"></div>
+	  <div class="nav-btn"></div>
+	</div>
+</section>
+<script>
+	//JavaScript of responsive navigation menu
+	
+	const menuBtn = document.querySelector(".menu-btn");
+	const navegation = document.querySelector(".navegation");
+	
+	menuBtn.addEventListener("click", () => {
+	  //si la clase "active" está presente la elimina, de lo contrario la añade
+	  menuBtn.classList.toggle("active");
+	  navegation.classList.toggle("active");
+	});
+	
+	//JavaScript for video slider navegation
+	const btns = document.querySelectorAll(".nav-btn");
+	const slides = document.querySelectorAll(".video-slide");
+	const contents = document.querySelectorAll(".content");
+	
+	var sliderNav = function (manual) {
+	  //button
+	  btns.forEach((btn) => {
+		btn.classList.remove("active");
+	  });
+	
+	  //video
+	  slides.forEach((slide) => {
+		slide.classList.remove("active");
+	  });
+	
+	  //content
+	  contents.forEach((content) => {
+		content.classList.remove("active");
+	  });
+	
+	  //button
+	  btns[manual].classList.add("active");
+	  //video
+	  slides[manual].classList.add("active");
+	  //content
+	  contents[manual].classList.add("active");
+	};
+	
+	btns.forEach((btn, i) => {
+	  btn.addEventListener("click", () => {
+		sliderNav(i);
+	  });
+	});
+	</script>
