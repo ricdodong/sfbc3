@@ -4,7 +4,7 @@
   --font-color-primary: #fff;
   --font-color-secundary: #01161f;
   --font-color-menu: #222;
-  --bg-primary: #0872c4;
+  --bg-primary: #4e0373;
   --bg-secundary: #fff;
 }
 
@@ -78,11 +78,11 @@
   z-index: 777;
   content: "";
   position: absolute;
-  background: rgba(3, 96, 261, 0.3);
+  background: rgba(7, 96, 261, 0.2);
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+top: 0;
+left: 0;
 }
 
 .content {
