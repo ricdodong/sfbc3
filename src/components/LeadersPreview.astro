@@ -9,7 +9,7 @@ const { data, slug } = Astro.props.leadership;
 ---
 
 <a class="card" href={`/leadership/${slug}`}>
-	<div class="placeholder"> <img style="padding-top:-5px;" src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" /></div>
+	<div class="placeholder"> <img src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" /></div>
 	<span class="name">{data.title}</span>
 	<span class="position">{data.description}</span>
 
@@ -49,6 +49,7 @@ const { data, slug } = Astro.props.leadership;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+   padding-top:-5px;
 	}
 	.name {
 		grid-area: 2 / 1 / 2 / 1;
