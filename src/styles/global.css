@@ -115,6 +115,8 @@
 		0px 16px 16px rgba(255, 255, 255, 0.1), 0px 4px 9px rgba(255, 255, 255, 0.12);
 }
 
+html { scroll-behavior: smooth; }
+
 html,
 body {
 	min-height: 100%;
