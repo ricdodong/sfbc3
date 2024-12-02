@@ -29,19 +29,19 @@ const { title, description } = Astro.props;
 		<script>
 			// Add “loaded” class once the document has completely loaded.
 			addEventListener('load', () => document.documentElement.classList.add('loaded'));
-var videos = document.querySelectorAll('video');
-for(var i=0; i<videos.length; i++)
-   videos[i].addEventListener('play', function(){pauseAll(this)}, true);
+var RicVideos = document.querySelectorAll("video, audio");
+for(var i=0; i<RicVideos.length; i++)
+   RicVideos[i].addEventListener('play', function(){pauseAll(this)}, true);
 
 
 function pauseAll(elem){
-	for(var i=0; i<videos.length; i++){
+	for(var i=0; i<RicVideos.length; i++){
 		//Is this the one we want to play?
-		if(videos[i] == elem) continue;
+		if(RicVideos[i] == elem) continue;
 		//Have we already played it && is it already paused?
-		if(videos[i].played.length > 0 && !videos[i].paused){
+		if(RicVideos[i].played.length > 0 && !RicVideos[i].paused){
 		// Then pause it now
-		  videos[i].pause();
+		  RicVideos[i].pause();
 		}
 	}
   }
