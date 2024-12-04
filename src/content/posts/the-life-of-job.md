@@ -78,5 +78,5 @@ Amen.
 
 > Sunday School Message: Bro. <a href="/leadership/reyhum/">Reyhum Advincula</a>
 <center>
-<video width="368" controls="" onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/posts/job2.mp4" type="video/mp4"></video>
+<video width="368" controls="" onclick='this.muted=false' onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/posts/job2.mp4" type="video/mp4"></video>
 </center>
