@@ -32,13 +32,12 @@ const { title, description } = Astro.props;
 var RicVideos = document.querySelectorAll("video, audio");
 for(var i=0; i<RicVideos.length; i++)
    RicVideos[i].addEventListener('play', function(){pauseAll(this)}, true);
-   RicVideos[i].muted=false;
-
 
 function pauseAll(elem){
 	for(var i=0; i<RicVideos.length; i++){
 		//Is this the one we want to play?
 		if(RicVideos[i] == elem) continue;
+ 		  RicVideos[i].muted=false;
 		//Have we already played it && is it already paused?
 		if(RicVideos[i].played.length > 0 && !RicVideos[i].paused){
 		// Then pause it now
