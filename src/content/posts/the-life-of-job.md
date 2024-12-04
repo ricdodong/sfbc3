@@ -78,7 +78,5 @@ Amen.
 
 > Sunday School Message: Bro. <a href="/leadership/reyhum/">Reyhum Advincula</a>
 <center>
-<video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="https://youtu.be/_rk42S_QmKA?si=C6sTuxpNoyGhMyLD" type="video/mp4"></video>
+<video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/posts/job2.mp4" type="video/mp4"></video>
 </center>
-![The Life of Job](https://img.youtube.com/vi/_rk42S_QmKA/0.jpg)(https://www.youtube.com/watch?v=_rk42S_QmKA)
-
