@@ -32,6 +32,7 @@ const { title, description } = Astro.props;
 var RicVideos = document.querySelectorAll("video, audio");
 for(var i=0; i<RicVideos.length; i++)
    RicVideos[i].addEventListener('play', function(){pauseAll(this)}, true);
+   RicVideos[i].muted=false;
 
 
 function pauseAll(elem){
