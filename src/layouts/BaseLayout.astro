@@ -47,6 +47,22 @@ function pauseAll(elem){
 	}
   }
 
+document.onreadystatechange = function () {
+  var RicState = document.readyState
+  if (RicState == 'interactive') {
+       document.getElementById('contents').style.visibility="hidden";
+  } else if (RicState == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+         document.getElementById('loaddiv').style.visibility="hidden";
+         document.getElementById('logoload').style.visibility="hidden";
+         document.getElementById('loader').style.visibility="hidden";
+         document.getElementById('loader2').style.visibility="hidden";
+         document.getElementById('contents').style.visibility="visible";
+      },1000);
+  }
+}
+
 </script>
 
 		<style>
@@ -131,6 +147,81 @@ function pauseAll(elem){
 					--bg-gradient-size: none;
 				}
 			}
+.loaddiv {
+width:100%;
+height:100%;
+background-color:black;
+position:fixed;
+z-index:9990;
+}
+.logoload {
+  position: fixed;
+  top: 50%;
+  z-index: 9993;
+  width:135px;
+  height:137px;
+
+}
+
+.loader {
+  position: fixed;
+left:49.9%;  
+top: 48.4%;
+  z-index: 9992;
+  border: 10px solid #f3f3f3;
+  border-radius: 60%;
+  border-top: 10px solid green;
+  border-right: 10px solid yellowgreen;
+  border-bottom: 10px solid blue;
+  width: 135px;
+  height: 135px;
+  -webkit-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loader2 {
+  position: fixed;
+left:49.2%;  
+top: 46.8%;
+  z-index: 9991;
+  border: 10px solid red;
+  border-radius: 60%;
+  border-top: 10px solid yellow;
+  border-right: 10px solid green;
+  border-bottom: 10px solid blue;
+  width: 155px;
+  height: 155px;
+  -webkit-animation: spin2 2s linear infinite;
+  animation: spin2 2s linear infinite;
+}
+
+@-webkit-keyframes spin2 {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin2 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 		</style>
+
+<div id="loaddiv" class="loaddiv">
+<center><img id="logoload" src="https://sibagatfbc.com/logo2.png" class="logoload"/>
+<div id="loader" class="loader"></div>
+<div id="loader2" class="loader2"></div></center>
+</div>
+<div id="contents">test</div>
+
 	</body>
 </html>
