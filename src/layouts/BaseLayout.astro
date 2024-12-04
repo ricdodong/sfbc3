@@ -36,6 +36,7 @@ for(var i=0; i<RicVideos.length; i++)
 function pauseAll(elem){
 	for(var i=0; i<RicVideos.length; i++){
 		//Is this the one we want to play?
+	  	  RicVideos[i].muted=false;
 		if(RicVideos[i] == elem) continue;
 		//Have we already played it && is it already paused?
 		if(RicVideos[i].played.length > 0 && !RicVideos[i].paused){
