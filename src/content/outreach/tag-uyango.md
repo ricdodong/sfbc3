@@ -25,7 +25,7 @@ tags:
 
 ![Tag-uyango Outreach](../../../public/assets/outreach/tag-uyango/pastor-omandap.jpg)
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/outreach/tag-uyango/tag-uyango-church-special-number.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop muted preload="metadata"><source src="/assets/outreach/tag-uyango/tag-uyango-church-special-number.mp4" type="video/mp4"></video></center>
 
 ![Tag-uyango Outreach](../../../public/assets/outreach/tag-uyango/tag-uyango-church2.jpg)
 
@@ -61,13 +61,13 @@ tags:
 
 ![Tag-uyango Outreach](../../../public/assets/outreach/tag-uyango/tag-uyango-sibagat-members2.jpg)
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/outreach/tag-uyango/tag-uyango.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop muted preload="metadata"><source src="/assets/outreach/tag-uyango/tag-uyango.mp4" type="video/mp4"></video></center>
 
 <br/><br/>
 <Blockquote name="Tag-uyango Outreach">
 “Song Leading Practice”
 </Blockquote>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/outreach/tag-uyango/song-leading-practice.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop muted preload="metadata"><source src="/assets/outreach/tag-uyango/song-leading-practice.mp4" type="video/mp4"></video></center>
 
-<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop preload="metadata"><source src="/assets/outreach/tag-uyango/song-leading-practice2.mp4" type="video/mp4"></video></center>
+<center><video width="368" controls="" onmouseover="this.play()" onmouseout="this.pause()" loop muted preload="metadata"><source src="/assets/outreach/tag-uyango/song-leading-practice2.mp4" type="video/mp4"></video></center>
