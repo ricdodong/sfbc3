@@ -21,4 +21,4 @@ tags:
 
 ![Feeding Ministry](../../../public/assets/ministries/feeding/feeding-ministry-elrio.jpg)
 
-<center><video width="368" controls="" onmouseover="this.play()" loop preload="metadata"><source src="/assets/ministries/feeding/feeding-ministry.mp4" type="video/mp4"></video></center>
+<div class="vidfrm"><video width="368" controls="" onmouseover="this.play()" loop preload="metadata"><source src="/assets/ministries/feeding/feeding-ministry.mp4" type="video/mp4"></video></div>

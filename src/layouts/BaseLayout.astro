@@ -7,6 +7,7 @@ import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
@@ -22,7 +23,7 @@ const { title, description } = Astro.props;
 	<body>
 <div id="loaddiv" class="loaddiv">
 <div id="loader" class="logoload">
-<img id="logoload" src="https://sibagatfbc.com/logo2.png" class="logoload1"/>
+<img id="logoload" src="/logo2sm.png" class="logoload1"/>
 </div>
 </div>
 <div id="contents2" class="stack backgrounds">
@@ -66,7 +67,6 @@ document.onreadystatechange = function () {
       },1000);
   }
 }
-
 </script>
 
 		<style>
@@ -181,8 +181,8 @@ content:"";
   border-right: 5px solid #0000ff;
   border-bottom: 5px solid #00ffff;
   background: conic-gradient(transparent,green);
-  width: 85px;
-  height: 85px;
+  width: 135px;
+  height: 135px;
   -webkit-animation: spin 4s linear infinite;
   animation: spin 4s linear infinite;
 }
@@ -190,8 +190,8 @@ content:"";
 
 .logoload1 {
 position:absolute;
-width:75px;
-height:75px;
+width:120px;
+height:120px;
 z-index:9998;
 
 }
@@ -218,7 +218,8 @@ z-index:9998;
   100% { transform: rotate(360deg); }
 }
 
-		</style>
+
+</style>
 
 	</body>
 </html>

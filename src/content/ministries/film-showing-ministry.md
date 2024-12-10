@@ -17,6 +17,6 @@ tags:
  
 
 
-<center><video width="368" controls="" onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/ministries/film-showing/film-showing-ministry.mp4" type="video/mp4"></video></center>
+<div class="vidfrm"><video width="368" controls="" onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/ministries/film-showing/film-showing-ministry.mp4" type="video/mp4"></video></div>
 
-<center><video width="368" controls="" onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/ministries/film-showing/film-showing-ministry2.mp4" type="video/mp4"></video></center>
+<div class="vidfrm"><video width="368" controls="" onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/ministries/film-showing/film-showing-ministry2.mp4" type="video/mp4"></video></div>

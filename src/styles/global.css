@@ -143,6 +143,19 @@ img {
 	height: auto;
 }
 
+.vidfrm {
+	max-width: 100%;
+	height: auto;
+	background: rgb(47,57,49);
+	background: radial-gradient(circle, rgba(47,57,49,1) 0%, rgba(0,0,0,1) 100%);
+	border-radius: 1rem;
+	position: relative;
+	display:flex;
+align-items: center;
+justify-content: center;
+--tw-bg-opacity: 1;
+}
+
 a {
 	color: var(--link-color);
 }
@@ -254,4 +267,83 @@ h5 {
 	.lg\:gap-48 {
 		gap: 12rem;
 	}
+}
+
+.ricVideoRibbon {
+	position: absolute; right: -1px; top: -1px; max-width: 70%;
+  }
+video {
+position: relative;
+overflow: hidden;
+align-items: center;
+justify-content: center;
+--tw-bg-opacity: 1;
+background-color: rgb(0 128 0 / var(--tw-bg-opacity));
+}
+
+.videoplaybtn {
+position: absolute;
+left: 50%;
+top: 50%;
+z-index: 10;
+display: flex;
+height: 78px;
+width: 78px;
+--tw-translate-x: -50%;
+--tw-translate-y: -50%;
+transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+align-items: center;
+justify-content: center;
+border-radius: 9999px;
+--tw-bg-opacity: 1;
+background-color: rgb(0 128 0 / var(--tw-bg-opacity));
+animation: shadow-pulse 1.5s infinite;
+}
+
+.videoplaybtn svg {
+height: 1.5rem;
+width: 1.25rem;
+fill: #fff;
+--tw-text-opacity: 1;
+color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
+.videoplaybtn:after {
+position: absolute;
+left: 0;
+top: 0;
+height: 100%;
+width: 100%;
+border-radius: 9999px;
+--tw-content: "";
+content: var(--tw-content);
+animation: shadow-pulse-2 1.4s infinite
+}
+
+@keyframes shadow-pulse {
+0% {
+box-shadow: 0 0 0 0px #19fe3fb3;
+}
+
+70% {
+box-shadow: 0 0 0 35px rgba(254, 96, 25, 0);
+}
+
+100% {
+box-shadow: 0 0 0 0 rgba(254, 96, 25, 0);
+}
+}
+
+@keyframes shadow-pulse-2 {
+0% {
+box-shadow: 0 0 #19fe3fb3;
+}
+
+70% {
+box-shadow: 0 0 0 20px #fe601900
+}
+
+to {
+box-shadow: 0 0 #fe601900
+}
 }

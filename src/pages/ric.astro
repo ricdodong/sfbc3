@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import Hero from "../components/Hero.astro";
+import Grid from "../components/Grid.astro";
+import VideoComponent from "../components/VideoComponent";
+---
+
+<BaseLayout
+  title="Sermons"
+  description="Learn about the word of God"
+>
+  <div class="stack gap-20">
+    <main class="wrapper stack gap-8">
+      <Hero
+        title="Sermons"
+        tagline="Latest sermons, Word of God"
+        align="start"
+      />
+      <Grid variant="offset">
+        
+        <div class="gx-5 row mt-12 items-center lg:mt-0">
+            <div class="lg:col-7">  
+              <VideoComponent
+                client:load
+                src="/assets/gallery-img-2.png"
+                height={370}
+                width={700}
+                title="ricVideo"
+                video_id="qIFAk6jfA9A"
+                video_width="w-[700px]"
+                video_height="h-[370px]"
+              />
+            </div>
+            <div class="mt-6 lg:col-5 lg:mt-0">
+              <div class="text-container">
+                <h2 class="lg:text-4xl">Item Title</h2>
+                <p class="mt-4">Item Description</p>
+  
+                <a class="btn btn-white mt-6" href="#Link"> item button label </a>
+                <!--
+                              <ul class="mt-6 text-dark lg:-ml-4">
+                            {item.list &&
+                              item.list.map((list: any) => (
+                                <li class="mb-2 flex items-center rounded px-4">
+                                  <AiFillCheckCircle className="mr-3 fill-primary text-white" />
+                                  {list}
+                                </li>
+                              ))}
+                          </ul>          
+              -->
+              </div>
+            </div>
+          </div>
+    </Grid>
+    <ContactCTA />
+
+
+    </main>
+  </div>
+</BaseLayout>
