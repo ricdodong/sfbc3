@@ -22,6 +22,7 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 <div id="loaddiv" class="loaddiv">
+<div id="loader" class="logoload"></div>
 <img id="logoload" src="/logo2sm.png" class="logoload1"/>
 <div class="ricld"></div>
 <div class="ricld"></div>
@@ -195,16 +196,6 @@ background: radial-gradient(circle, rgba(51,47,57,1) 0%, rgba(14,4,25,1) 100%);
 position:fixed;
 z-index:9990;
 }
-.ricld{
-	width: 300px;
-	height: 300px;
-	border-radius: 50%;
-	position: absolute;
-}
-.ricld:nth-child(1){
-	border-bottom-width: 8px;
-	border-color: #eb0ea5;
-}
 .logoload {
 display: flex;
 position:relative;
@@ -277,20 +268,20 @@ z-index:9998;
   z-index: 9997;
 }
 
-.ricld:nth-child(2){
-  border-bottom-width: 3px;
+.ricld:nth-child(5){
+  border-bottom-width: 6px;
   border-color: red;
   background-color: rgba(105, 105, 105, 0.041);
   animation: spinric1 1.2s linear infinite;
 }
 .ricld:nth-child(4){
-  border-right-width: 3px;
+  border-right-width: 6px;
   background-color: rgba(105, 105, 105, 0.041);
   border-color: blue;
   animation: spinric2 0.9s linear infinite;
 }
 .ricld:nth-child(3){
-  border-top-width: 3px;
+  border-top-width: 6px;
   background-color: rgba(105, 105, 105, 0.041);
   border-color: green;
   animation: spinric3 1.2s linear infinite;
