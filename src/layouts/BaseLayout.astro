@@ -22,46 +22,44 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 <div id="loaddiv" class="loaddiv">
-<div id="loader" class="logoload">
-
-</div>
 <img id="logoload" src="/logo2sm.png" class="logoload1"/>
 <div class="ricld"></div>
 <div class="ricld"></div>
 <div class="ricld"></div>
 </div>
+
 <div id="contents2" class="stack backgrounds">
-	<div class="ricsn">
-		❅
-		</div>
-		<div class="ricsn">
-		❅
-		</div>
-		<div class="ricsn">
-		❆
-		</div>
-		<div class="ricsn">
-		❄
-		</div>
-		<div class="ricsn">
-		❅
-		</div>
-		<div class="ricsn">
-		❆
-		</div>
-		<div class="ricsn">
-		❄
-		</div>
-		<div class="ricsn">
-		❅
-		</div>
-		<div class="ricsn">
-		❆
-		</div>
-		<div class="ricsn">
-		❄
-		</div>
-	<Nav />
+ <div class="ricsn">
+  ❅
+  </div>
+  <div class="ricsn">
+  ❅
+  </div>
+  <div class="ricsn">
+  ❆
+  </div>
+  <div class="ricsn">
+  ❄
+  </div>
+  <div class="ricsn">
+  ❅
+  </div>
+  <div class="ricsn">
+  ❆
+  </div>
+  <div class="ricsn">
+  ❄
+  </div>
+  <div class="ricsn">
+  ❅
+  </div>
+  <div class="ricsn">
+  ❆
+  </div>
+  <div class="ricsn">
+  ❄
+  </div>
+			<Nav />
 			<slot />
 			<Footer />
 		</div>
@@ -186,8 +184,8 @@ document.onreadystatechange = function () {
 				}
 			}
 
-			.loaddiv {
-	display: flex;
+.loaddiv {
+display: flex;
 width:100vw;
 height:100vh;
 align-items: center;
@@ -321,8 +319,6 @@ z-index:9998;
     transform: rotateX(35deg) rotateY(45deg) rotateZ(360deg);
   }
 }
-
-
 </style>
 
 	</body>
