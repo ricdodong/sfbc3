@@ -1,7 +1,7 @@
 ---
 title: ELVEN B. LUMALAD
 publishDate: 2023-12-08 00:00:00
-img: /assets/leaders/pastor.jpg
+img: ../../assets/leaders/pastor.jpg
 img_alt: pastor Elven
 description: |
   SFBC Senior Pastor / Host Pastor

@@ -1,7 +1,7 @@
 ---
 title: Feeding Ministry
 publishDate: 2022-27-04 00:00:00
-img: /assets/ministries/feeding/childrens-ministry-elrio-feeding.jpg
+img: ../../assets/ministries/feeding/childrens-ministry-elrio-feeding.jpg
 img_alt: Feeding Ministry
 description: |
   We believe that feeding nutritious foods is essential to preventing malnutrition. Through this ministry, we can help children maintain proper health and preach God's word from the Bible to them.

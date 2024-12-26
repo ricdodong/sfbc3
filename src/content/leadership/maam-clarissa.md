@@ -1,7 +1,7 @@
 ---
 title: CLARISSA L. CORTEZ
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/maamclarisa.jpg
+img: ../../assets/leaders/maamclarisa.jpg
 img_alt: CLARISSA L. CORTEZ
 description: |
   Sunday School Teacher

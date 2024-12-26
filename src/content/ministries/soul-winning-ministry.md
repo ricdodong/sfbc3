@@ -1,7 +1,7 @@
 ---
 title: Soul Winning Ministry
 publishDate: 2022-27-04 00:00:00
-img: /assets/ministries/soul-winning/soul-winning-p13-1.jpg
+img: ../../assets/ministries/soul-winning/soul-winning-p13-1.jpg
 img_alt: Soul Winning Ministry
 description: |
   We believe that faith cometh from hearing the word of God. Through this ministry we can share the Gospel of God in our society.

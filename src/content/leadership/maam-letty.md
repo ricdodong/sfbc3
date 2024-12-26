@@ -1,7 +1,7 @@
 ---
 title: LETECIA B. ADVINCULA
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/letty.jpg
+img: ../../assets/leaders/letty.jpg
 img_alt: Letecia B. Advincula LPT.,
 description: |
   Sunday School Teacher / Treasurer

@@ -1,7 +1,7 @@
 ---
 title: ELEANOR VALLEJERA
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/eleanor.jpg
+img: ../../assets/leaders/eleanor.jpg
 img_alt: Eleanor Vallejera
 description: |
   Sunday School Teacher

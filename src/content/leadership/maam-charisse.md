@@ -1,7 +1,7 @@
 ---
 title: CHARISSE MAE VALLEJERA
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/charisse.jpg
+img: ../../assets/leaders/charisse.jpg
 img_alt: Charisse Mae Corral Vallejera
 description: |
   Childrens Sunday School Teacher

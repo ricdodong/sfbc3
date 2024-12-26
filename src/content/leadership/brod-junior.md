@@ -1,7 +1,7 @@
 ---
 title: GREGORIO ADVINCULA Jr.
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/jun.jpg
+img: ../../assets/leaders/jun.jpg
 img_alt: GREGORIO ADVINCULA Jr.
 description: |
   Church Deacon / Preacher

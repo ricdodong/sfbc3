@@ -1,7 +1,7 @@
 ---
 title: RICKY M. BANUELOS
 publishDate: 2022-03-02 00:00:00
-img: /assets/leaders/ricky.jpg
+img: ../../assets/leaders/ricky.jpg
 img_alt: Ricky M. Banuelos
 description: |
   Church Deacon / Musician

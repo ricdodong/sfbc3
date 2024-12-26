@@ -1,7 +1,7 @@
 ---
 title: REYHUM ADVINCULA
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/reyhum.jpg
+img: ../../assets/leaders/reyhum.jpg
 img_alt: Reyhum Advincula
 description: |
   Sunday School Teacher

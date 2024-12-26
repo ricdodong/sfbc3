@@ -1,7 +1,7 @@
 ---
 title: Childrens Ministry
 publishDate: 2022-27-04 00:00:00
-img: /assets/ministries/childrens/childrens-ministry.jpg
+img: ../../assets/ministries/childrens/childrens-ministry.jpg
 img_alt: Childrens Ministry
 description: |
   In every child we gather through our Lord and Personal Savior Jesus Christ, all our hard works will be lighten because we believe that our labor is not in Vain in the Lord.

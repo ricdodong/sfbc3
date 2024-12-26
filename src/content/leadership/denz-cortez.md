@@ -1,7 +1,7 @@
 ---
 title: DENNIS CORTEZ
 publishDate: 2020-03-02 00:00:00
-img: /assets/leaders/denz.jpg
+img: ../../assets/leaders/denz.jpg
 img_alt: Dennis Cortez
 description: |
   Church Deacon / Preacher

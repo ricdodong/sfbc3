@@ -1,7 +1,7 @@
 ---
 title: JASON ADVINCULA
 publishDate: 2023-11-07 00:00:00
-img: /assets/leaders/jason.jpg
+img: ../../assets/leaders/jason.jpg
 img_alt: Jason Advincula
 description: |
   Church Deacon / Preacher

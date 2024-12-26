@@ -17,6 +17,8 @@ import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/Skills.astro";
 import OutreachPreview from "../components/OutreachPreview.astro";
 import LeadersPreview from "../components/LeadersPreview.astro";
+import { Image } from 'astro:assets';
+import myChurchImg from '../../public/assets/sfbc-bg.jpg';
 // Content Fetching: List four most recent posts projects
 const posts = (await getCollection("posts"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
@@ -58,13 +60,14 @@ const leadership = (await getCollection("leadership"))
             <Pill><Icon icon="pencil-line" size="1.33em" /> Prayer</Pill>
           </div>
         </Hero>
-
+<!--
         <img
           alt="Sibagat Fundamental Baptist Church"
           width="480px"
           height="500px"
           src="/assets/sfbc-bg.jpg"
-        />
+        /> -->
+        <Image src={myChurchImg} alt="Sibagat Fundamental Baptist Church" />
       </header>
 
       <Skills />
