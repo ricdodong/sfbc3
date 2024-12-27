@@ -10,7 +10,7 @@ const { data, slug } = Astro.props.leadership;
 ---
 
 <a class="card" href={`/leadership/${slug}`}>
-	<div class="placeholder"> <Image src={data.img} alt={data.img_alt || ''} loading="lazy" decoding="async" /></div>
+	<div class="placeholder"><Image src={data.img} alt={data.img_alt || ''} width="270" height="306" decoding="async" /></div>
 	<span class="name">{data.title}</span>
 	<span class="position">{data.description}</span>
 

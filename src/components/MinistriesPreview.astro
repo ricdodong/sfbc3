@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -11,7 +11,7 @@ const { data, slug } = Astro.props.ministries;
 
 <a class="card" href={`/ministries/${slug}`}>
 	<span class="title">{data.title}</span>
-	<Image src={data.img} alt={data.img_alt || ''} loading="eager" decoding="async" />
+	<Image src={data.img} alt={data.img_alt || ''} width="606" height="350" decoding="async" />
 </a>
 
 <style>
@@ -47,8 +47,8 @@ const { data, slug } = Astro.props.ministries;
 
 	img {
 		grid-area: 1 / 1 / 3 / 3;
-		width: 100%;
-		height: 100%;
+		width: 606px;
+		height: 350px;
 		object-fit: cover;
 	}
 
@@ -57,6 +57,13 @@ const { data, slug } = Astro.props.ministries;
 			height: 22rem;
 			border-radius: 1.5rem;
 		}
+
+		img {
+		grid-area: 1 / 1 / 3 / 3;
+		width: 606px;
+		height: 350px;
+		object-fit: cover;
+	}
 
 		.title {
 			border-radius: 0.9375rem;
