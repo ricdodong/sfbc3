@@ -1,7 +1,7 @@
 ---
 title: Villangit Fundamental Baptist Church
 publishDate: 2025-01-12 00:00:00
-img: ../../assets/outreach/villangit/villangit.jpg
+img: /assets/outreach/villangit/villangit.jpg
 img_alt: VillangitFBC
 description: |
   SibagatFBC's Outreach
