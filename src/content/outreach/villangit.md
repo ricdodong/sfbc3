@@ -13,4 +13,15 @@ tags:
 “Celebration of God's Goodness for Another Mission”
 </Blockquote>
 
-![Villangit Outreach](../../../public/assets/outreach/villangit/villangit1.jpg)
+![Villangit Outreach](../../assets/outreach/villangit/villangit2.jpg)
+
+<Blockquote name="Speaker">
+“Speaker: Pastor Melvin John Sandico”
+</Blockquote>
+
+![Pastor John](../../assets/outreach/villangit/ptrjohn.jpg)
+
+<Blockquote name="Special Song">
+“Special Number: Rinaly R. Banuelos”
+</Blockquote>
+<div class="vidfrm"><video width="368" controls="" onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/outreach/villangit/carrythelight.mp4" type="video/mp4"></video></div>
