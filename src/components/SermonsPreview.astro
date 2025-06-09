@@ -3,10 +3,10 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-	posts: CollectionEntry<'posts'>;
+	sermons: CollectionEntry<'sermons'>;
 }
 
-const { data, slug } = Astro.props.posts;
+const { data, slug } = Astro.props.sermons;
 ---
 
 <a class="card" href={`/sermons/${slug}`}>

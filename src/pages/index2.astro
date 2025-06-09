@@ -10,7 +10,7 @@ import Grid from "../components/Grid.astro";
 import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 import Pill from "../components/Pill.astro";
-import PostsPreview from "../components/PostsPreview.astro";
+import SermonsPreview from "../components/SermonsPreview.astro";
 import MinistriesPreview from "../components/MinistriesPreview.astro";
 // Page section components
 import ContactCTA from "../components/ContactCTA.astro";
@@ -20,7 +20,7 @@ import LeadersPreview from "../components/LeadersPreview.astro";
 import { Image } from 'astro:assets';
 import logo from '../../public/sfbc-logo1-white.png';
 // Content Fetching: List four most recent posts projects
-const posts = (await getCollection("posts"))
+const sermons = (await getCollection("sermons"))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 3);
 
@@ -80,18 +80,18 @@ const textLinks: { label: string; href: string }[] = [
 		<main id="main" class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Recent Posts</h3>
+					<h3>Recent Sermons</h3>
 					<p>
-						Take a look below at some of our latest posts.
+						Be blessed with the word of God.
 					</p>
 				</header>
 
 				<div class="gallery">
 					<Grid variant="offset">
 						{
-							posts.map((posts) => (
+							sermons.map((sermons) => (
 								<li>
-									<PostsPreview posts={posts} />
+									<SermonsPreview sermons={sermons} />
 								</li>
 							))
 						}
