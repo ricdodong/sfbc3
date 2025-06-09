@@ -10,6 +10,7 @@ import Grid from "../components/Grid.astro";
 import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 import Pill from "../components/Pill.astro";
+import EventsPreview from "../components/EventsPreview.astro";
 import SermonsPreview from "../components/SermonsPreview.astro";
 import MinistriesPreview from "../components/MinistriesPreview.astro";
 // Page section components
@@ -19,7 +20,12 @@ import OutreachPreview from "../components/OutreachPreview.astro";
 import LeadersPreview from "../components/LeadersPreview.astro";
 import { Image } from 'astro:assets';
 import myChurchImg from '../../public/assets/sfbc-bg.jpg';
-// Content Fetching: List four most recent posts projects
+// Content Fetching: List four most recent events projects
+const events = (await getCollection("events"))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+
+// Content Fetching: List four most recent sermons projects
 const sermons = (await getCollection("sermons"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
@@ -74,6 +80,32 @@ const leadership = (await getCollection("leadership"))
     </div>
 
     <main class="wrapper stack gap-20 lg:gap-48">
+            <section class="section with-background with-cta">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <h3>Recent Events</h3>
+          <p>Find out our latest events.</p>
+        </header>
+
+        <div class="gallery">
+          <Grid variant="offset">
+            {
+              events.map((events) => (
+                <li>
+                  <EventsPreview events={events} />
+                </li>
+              ))
+            }
+          </Grid>
+        </div>
+
+        <div class="cta">
+          <CallToAction href="/events/">
+            View All
+            <Icon icon="arrow-right" size="1.2em" />
+          </CallToAction>
+        </div>
+      </section>
+
       <section class="section with-background with-cta">
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Recent Sermons</h3>
