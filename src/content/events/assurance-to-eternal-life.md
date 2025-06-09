@@ -1,7 +1,7 @@
 ---
 title: Assurance to Eternal Life
 publishDate: 2019-12-01 00:00:00
-img: ../../assets/posts/1675398225985.webp
+img: ../../assets/sermons/1675398225985.webp
 img_alt: Assurance to Eternal Life
 description: |
   If you died today, Are you 100% sure you would be in heaven?

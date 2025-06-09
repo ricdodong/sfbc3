@@ -1,7 +1,7 @@
 ---
 title: The Life of Job
 publishDate: 2024-18-08 00:00:00
-img: ../../assets/posts/job.jpg
+img: ../../assets/sermons/job.jpg
 img_alt: The Life of Job
 description: |
   A Testimony of Faith and Perseverance
@@ -16,7 +16,7 @@ tags:
 **Please click the player below to listen this article.**
 
 <audio controls>
-  <source src="/assets/posts/sounds/theLifeofJob.mp3" type="audio/mpeg">
+  <source src="/assets/sermons/sounds/theLifeofJob.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
 
@@ -77,5 +77,5 @@ Amen.
 </br>
 
 > Sunday School Message: Bro. <a href="/leadership/reyhum/">Reyhum Advincula</a>
-<div class="vidfrm"><video width="368" controls="" onclick='this.muted=false' onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/posts/job2.mp4" type="video/mp4"></video>
+<div class="vidfrm"><video width="368" controls="" onclick='this.muted=false' onmouseover="this.play()" loop muted preload="metadata"><source src="/assets/sermons/job2.mp4" type="video/mp4"></video>
 </div>
