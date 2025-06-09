@@ -1,7 +1,7 @@
 ---
 title: DVBS Villangit
 publishDate: 2025-8-06 15:00:00
-img: ../../assets/events/dvbs-villangit/dvbs-villangit.jpg
+img: ../../assets/events/dvbs-villangit/dvbs villangit_banner.gif
 img_alt: DVBS Villangit
 description: |
   A Daily Vacation Bible School to the kids of Brgy. Villangit
