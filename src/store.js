@@ -1,6 +1,5 @@
 import { atom } from 'nanostores';
 
-// The Playlist Array
 export const $playlist = atom([
   {
     title: "Nganong Dili Makaluwas Ang Atong Maayong Buhat by Pastor Reynaldo Subrabas",
@@ -14,7 +13,8 @@ export const $playlist = atom([
   }
 ]);
 
-// Initial State: Load the first item from the playlist by default
 export const $currentTrack = atom("https://www.youtube.com/watch?v=CaTeyPHbY1k");
 export const $trackTitle = atom("Nganong Dili Makaluwas Ang Atong Maayong Buhat by Pastor Reynaldo Subrabas");
-export const $isPlaying = atom(false); // Set to true if you want it to autoplay
+export const $isPlaying = atom(false); 
+// New state for the collapsible feature
+export const $isCollapsed = atom(false);
