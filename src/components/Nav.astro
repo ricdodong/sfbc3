@@ -15,12 +15,11 @@ const textLinks: { label: string; href: string }[] = [
 	{ label: 'About', href: '/about/' },
 ];
 
-/** Icon links to social media — edit these with links to your profiles! */
+/** Icon links to social media */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
 	{ label: 'Facebook', href: 'https://www.facebook.com/SibagatFBC', icon: 'facebook-logo' },
 	{ label: 'YouTube', href: 'https://www.youtube.com/@sibagatfbc/', icon: 'youtube-logo' },
 	{ label: 'Tiktok', href: 'https://tiktok.com/@sibagatfbc/', icon: 'tiktok-logo' },
-	
 ];
 ---
 
@@ -119,43 +118,51 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 </nav>
 
 <script>
-	class MenuButton extends HTMLElement {
-		constructor() {
-			super();
+	function setupMenu() {
+		class MenuButton extends HTMLElement {
+			constructor() {
+				super();
 
-			// Inject menu toggle button when JS runs.
-			this.appendChild(this.querySelector('template')!.content.cloneNode(true));
-			const btn = this.querySelector('button')!;
+				// Clear existing content to prevent duplicates during transitions
+				this.innerHTML = '';
+				this.appendChild(this.querySelector('template')!.content.cloneNode(true));
+				
+				const btn = this.querySelector('button')!;
+				const menu = document.getElementById('menu-content')!;
+				
+				menu.hidden = true;
+				menu.classList.add('menu-content');
 
-			// Hide menu (shown by default to support no-JS browsers).
-			const menu = document.getElementById('menu-content')!;
-			menu.hidden = true;
-			// Add "menu-content" class in JS to avoid covering content in non-JS browsers.
-			menu.classList.add('menu-content');
+				const setExpanded = (expand: boolean) => {
+					btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+					menu.hidden = !expand;
+				};
 
-			/** Set whether the menu is currently expanded or collapsed. */
-			const setExpanded = (expand: boolean) => {
-				btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
-				menu.hidden = !expand;
-			};
+				btn.addEventListener('click', () => setExpanded(menu.hidden));
 
-			// Toggle menu visibility when the menu button is clicked.
-			btn.addEventListener('click', () => setExpanded(menu.hidden));
+				const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
+					setExpanded(e.matches);
+					btn.hidden = e.matches;
+				};
+				const mediaQueries = window.matchMedia('(min-width: 50em)');
+				handleViewports(mediaQueries);
+				mediaQueries.addEventListener('change', handleViewports);
+			}
+		}
 
-			// Hide menu button for large screens.
-			const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
-				setExpanded(e.matches);
-				btn.hidden = e.matches;
-			};
-			const mediaQueries = window.matchMedia('(min-width: 50em)');
-			handleViewports(mediaQueries);
-			mediaQueries.addEventListener('change', handleViewports);
+		if (!customElements.get('menu-button')) {
+			customElements.define('menu-button', MenuButton);
 		}
 	}
-	customElements.define('menu-button', MenuButton);
+
+	// Initialize on first load
+	setupMenu();
+	// Re-initialize after page swap to keep mobile menu working
+	document.addEventListener('astro:after-swap', setupMenu);
 </script>
 
 <style>
+    /* ... keep your existing styles exactly as they were ... */
 	nav {
 		z-index: 9999;
 		position: relative;
