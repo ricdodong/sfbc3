@@ -3,7 +3,7 @@
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import Player from '../components/Player.jsx';
+import Player from '../components/Player.jsx'; 
 import loadmg from '../../public/logo2sm.png';
 import { Image } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
@@ -22,7 +22,7 @@ const { title, description } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body>
-		<div id="loaddiv" class="loaddiv" transition:persist="loader-wrapper">
+		<div id="loaddiv" class="loaddiv" transition:persist="loader">
 			<div id="loader" class="logoload"></div>
 			<Image id="logoload-img" src={loadmg} alt="logospn" class="logoload1"/>
 			<div class="ricld"></div>
@@ -42,7 +42,7 @@ const { title, description } = Astro.props;
 			<div class="ricsn">❆</div>
 			<div class="ricsn">❄</div>
 
-			<div transition:persist="navigation">
+			<div transition:persist="nav-container">
 				<Nav />
 			</div>
 
@@ -56,69 +56,105 @@ const { title, description } = Astro.props;
 		</div>
 
 		<script>
-			/**
-			 * Handles the loading screen. 
-			 * We only want the long 1s delay on the VERY first visit.
+			/** * Loader Logic 
 			 */
-			function handleLoading() {
+			function handleLoader() {
 				const loaddiv = document.getElementById('loaddiv');
 				const contents2 = document.getElementById('contents2');
 				
-				if (!loaddiv || !contents2) return;
-
-				// If it's a page transition (not a hard reload), show content immediately
-				if (window.name === "is-navigating") {
-					loaddiv.style.display = "none";
-					contents2.style.visibility = "visible";
-					return;
-				}
-
-				// Hard reload logic
+				// On hard reload
 				if (document.readyState === 'complete') {
 					setTimeout(() => {
-						loaddiv.style.display = "none";
-						contents2.style.visibility = "visible";
-						window.name = "is-navigating"; // Mark as visited
+						if (loaddiv) loaddiv.style.visibility = "hidden";
+						if (contents2) contents2.style.visibility = "visible";
 					}, 1000);
 				}
 			}
 
-			// Run on initial load
-			window.addEventListener('load', handleLoading);
+			window.addEventListener('load', handleLoader);
 
-			// Logic for other media elements
+			/**
+			 * Media Pause Logic 
+			 */
 			function initMediaPause() {
-				const RicVideos = document.querySelectorAll("video, audio");
-				RicVideos.forEach(media => {
-					media.addEventListener('play', function() {
-						RicVideos.forEach(other => {
-							if (other !== media) {
-								(other as HTMLMediaElement).pause();
-								(other as HTMLMediaElement).muted = true;
+				var RicVideos = document.querySelectorAll("video, audio");
+				for(var i=0; i<RicVideos.length; i++) {
+					RicVideos[i].addEventListener('play', function(this: any){
+						const current = this;
+						for(var j=0; j<RicVideos.length; j++){
+							if(RicVideos[j] == current) continue;
+							const other = RicVideos[j] as HTMLMediaElement;
+							if(other.played.length > 0 && !other.paused){
+								other.pause();
+								other.muted = true;
 							}
-						});
+						}
 					}, true);
-				});
+				}
 			}
 
 			initMediaPause();
 
-			// Ensure content is visible after Astro swaps pages
+			/**
+			 * Astro Transition Logic
+			 * Ensures UI is visible and scripts re-run after a page swap
+			 */
 			document.addEventListener('astro:after-swap', () => {
 				initMediaPause();
 				const contents2 = document.getElementById('contents2');
 				const loaddiv = document.getElementById('loaddiv');
 				if (contents2) contents2.style.visibility = "visible";
-				if (loaddiv) loaddiv.style.display = "none";
+				if (loaddiv) loaddiv.style.visibility = "hidden";
 			});
+
+			// Add “loaded” class to document
+			document.documentElement.classList.add('loaded');
 		</script>
 
 		<style is:global>
-			/* is:global ensures styles aren't stripped during swaps */
-			#contents2 {
-				visibility: hidden;
+			/* ROOT VARIABLES - RESTORED */
+			:root {
+				--_placeholder-bg: linear-gradient(transparent, transparent);
+				--bg-image-main: url('/assets/backgrounds/bg-main-light-800w.jpg');
+				--bg-image-main-curves: url('/assets/backgrounds/bg-main-light.svg');
+				--bg-image-subtle-1: var(--_placeholder-bg);
+				--bg-image-subtle-2: var(--_placeholder-bg);
+				--bg-image-footer: var(--_placeholder-bg);
+				--bg-svg-blend-mode: overlay;
+				--bg-blend-mode: darken;
+				--bg-image-aspect-ratio: 2.25;
+				--bg-scale: 1.68;
+				--bg-aspect-ratio: calc(var(--bg-image-aspect-ratio) / var(--bg-scale));
+				--bg-gradient-size: calc(var(--bg-scale) * 100%);
 			}
 
+			:root.theme-dark {
+				--bg-image-main: url('/assets/backgrounds/bg-main-dark-800w.jpg');
+				--bg-image-main-curves: url('/assets/backgrounds/bg-main-dark.svg');
+				--bg-svg-blend-mode: darken;
+				--bg-blend-mode: lighten;
+			}
+
+			:root.loaded {
+				--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-light-800w.jpg');
+				--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-light-800w.jpg');
+				--bg-image-footer: url('/assets/backgrounds/bg-footer-light-800w.jpg');
+			}
+
+			/* BACKGROUNDS ENGINE - RESTORED */
+			.backgrounds {
+				min-height: 100%;
+				isolation: isolate;
+				background:
+					url('/assets/backgrounds/noise.png') top center/220px repeat,
+					var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
+					var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
+					var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+					var(--gray-999);
+				background-blend-mode: overlay, var(--bg-blend-mode), var(--bg-svg-blend-mode), normal, normal;
+			}
+
+			/* LOADER UI - RESTORED */
 			.loaddiv {
 				display: flex;
 				width:100vw;
@@ -127,9 +163,12 @@ const { title, description } = Astro.props;
 				justify-content: center;
 				background: radial-gradient(circle, rgba(51,47,57,1) 0%, rgba(14,4,25,1) 100%);
 				position:fixed;
-				top:0;
-				left:0;
+				top:0; left:0;
 				z-index:9990;
+			}
+			
+			#contents2 {
+				visibility: hidden;
 			}
 
 			.logoload {
@@ -147,33 +186,22 @@ const { title, description } = Astro.props;
 			}
 
 			.logoload::before {
-				content: "";
+				content:"";
 				background-color: black;
 				position: absolute;
-				width: 86%;
-				height: 86%;
+				width: 86%; height: 86%;
 				border-radius: 50%;
-				top: 50%;
-				left: 50%;
+				top: 50%; left: 50%;
 				transform: translate(-50%, -50%);
 			}
 
-			.logoload1 {
-				position:absolute;
-				width:120px;
-				height:120px;
-				z-index:9998;
-			}
+			.logoload1 { position:absolute; width:120px; height:120px; z-index:9998; }
 
-			@keyframes spin {
-				0% { transform: rotate(0deg); }
-				100% { transform: rotate(-360deg); }
-			}
+			@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
 
 			.ricld {
 				position:absolute;
-				width: 230px;
-				height: 230px;
+				width: 230px; height: 230px;
 				border-radius: 50%;
 				z-index: 9997;
 			}
@@ -182,29 +210,9 @@ const { title, description } = Astro.props;
 			.ricld:nth-child(4){ border-right: 6px solid blue; animation: spinric2 0.9s linear infinite; }
 			.ricld:nth-child(3){ border-top: 6px solid green; animation: spinric3 1.2s linear infinite; }
 
-			@keyframes spinric1 {
-				0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }
-				100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); }
-			}
-			@keyframes spinric2 {
-				0% { transform: rotateX(53deg) rotateY(10deg) rotateZ(0deg); }
-				100% { transform: rotateX(53deg) rotateY(10deg) rotateZ(360deg); }
-			}
-			@keyframes spinric3 {
-				0% { transform: rotateX(35deg) rotateY(45deg) rotateZ(0deg); }
-				100% { transform: rotateX(35deg) rotateY(45deg) rotateZ(360deg); }
-			}
-
-			.backgrounds {
-				min-height: 100vh;
-				isolation: isolate;
-				background:
-					url('/assets/backgrounds/noise.png') top center/220px repeat,
-					var(--bg-image-footer, none) bottom center/var(--bg-gradient-size, 100%) no-repeat,
-					var(--bg-image-main-curves, none) top center/var(--bg-gradient-size, 100%) no-repeat,
-					var(--bg-image-main, none) top center/var(--bg-gradient-size, 100%) no-repeat,
-					#050505;
-			}
+			@keyframes spinric1 { 0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); } 100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); } }
+			@keyframes spinric2 { 0% { transform: rotateX(53deg) rotateY(10deg) rotateZ(0deg); } 100% { transform: rotateX(53deg) rotateY(10deg) rotateZ(360deg); } }
+			@keyframes spinric3 { 0% { transform: rotateX(35deg) rotateY(45deg) rotateZ(0deg); } 100% { transform: rotateX(35deg) rotateY(45deg) rotateZ(360deg); } }
 		</style>
 	</body>
 </html>
