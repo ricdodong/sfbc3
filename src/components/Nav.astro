@@ -21,6 +21,9 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	{ label: 'YouTube', href: 'https://www.youtube.com/@sibagatfbc/', icon: 'youtube-logo' },
 	{ label: 'Tiktok', href: 'https://tiktok.com/@sibagatfbc/', icon: 'tiktok-logo' },
 ];
+
+// Helper to determine if a link is active based on current URL
+const currentPath = Astro.url.pathname;
 ---
 
 <nav style="height:90px;">
@@ -37,51 +40,31 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 			</template>
 		</menu-button>
 	</div>
-	<noscript>
-		<ul class="nav-items">
-			{
-				textLinks.map(({ label, href }) => (
-					<li>
-						<a
-							aria-current={Astro.url.pathname === href}
-							class:list={[
-								'link',
-								{
-									active:
-										Astro.url.pathname === href ||
-										(href !== '/' && Astro.url.pathname.startsWith(href)),
-								},
-							]}
-							href={href}
-						>
-							{label}
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</noscript>
+
 	<div id="menu-content" hidden>
 		<ul class="nav-items">
 			{
-				textLinks.map(({ label, href }) => (
-					<li>
-						<a
-							aria-current={Astro.url.pathname === href}
-							class:list={[
-								'link',
-								{
-									active:
-										Astro.url.pathname === href ||
-										(href !== '/' && Astro.url.pathname.startsWith(href)),
-								},
-							]}
-							href={href}
-						>
-							{label}
-						</a>
-					</li>
-				))
+				textLinks.map(({ label, href }) => {
+					// Logic: Home must be exact match, others match if path starts with href
+					const isActive = href === '/' 
+						? currentPath === href 
+						: currentPath === href || currentPath.startsWith(href);
+					
+					return (
+						<li>
+							<a
+								aria-current={isActive ? 'page' : undefined}
+								class:list={[
+									'link',
+									{ active: isActive },
+								]}
+								href={href}
+							>
+								{label}
+							</a>
+						</li>
+					)
+				})
 			}
 		</ul>
 		<div class="menu-footer">
@@ -104,23 +87,18 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 </nav>
 
 <script>
-	/** * Logic to initialize the menu. 
-	 * We define it as a function so we can call it on 'astro:after-swap'.
-	 */
 	function initMenu() {
 		class MenuButton extends HTMLElement {
 			constructor() {
 				super();
 				
-				// Find template and menu
 				const template = this.querySelector('template');
 				const menu = document.getElementById('menu-content');
 				if (!template || !menu) return;
 
-				// Inject button if not already there
-				if (!this.querySelector('button')) {
-					this.appendChild(template.content.cloneNode(true));
-				}
+				// Clear existing button to prevent duplicates on swap
+				this.innerHTML = '';
+				this.appendChild(template.content.cloneNode(true));
 
 				const btn = this.querySelector('button')!;
 				menu.hidden = true;
@@ -139,12 +117,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 				};
 				const mediaQueries = window.matchMedia('(min-width: 50em)');
 				handleViewports(mediaQueries);
-				mediaQueries.removeEventListener('change', handleViewports);
 				mediaQueries.addEventListener('change', handleViewports);
 			}
 		}
 
-		// Register the component if it's not already registered
 		if (!customElements.get('menu-button')) {
 			customElements.define('menu-button', MenuButton);
 		}
@@ -153,12 +129,11 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	// Initialize on first load
 	initMenu();
 
-	// RE-INITIALIZE on page swap to fix the "Broken" menu on click
+	// Re-run on every View Transition to refresh state and scripts
 	document.addEventListener('astro:after-swap', initMenu);
 </script>
 
 <style>
-    /* I HAVE RESTORED ALL YOUR ORIGINAL STYLES COMPLETELY */
 	nav {
 		z-index: 9999;
 		position: relative;
