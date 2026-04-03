@@ -1,13 +1,12 @@
 ---
-// Learn about using Astro layouts:
-// https://docs.astro.build/en/core-concepts/layouts/
-
 // Component Imports
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Player from '../components/Player.jsx'; // Make sure this path is correct
 import loadmg from '../../public/logo2sm.png';
 import { Image } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title?: string | undefined;
@@ -20,88 +19,85 @@ const { title, description } = Astro.props;
 <html lang="en">
 	<head>
 		<MainHead title={title} description={description} />
+		<ClientRouter />
 	</head>
 	<body>
-<div id="loaddiv" class="loaddiv">
-<div id="loader" class="logoload"></div>
-<Image id="logoload" src={loadmg} alt="logospn" class="logoload1"/>
-<div class="ricld"></div>
-<div class="ricld"></div>
-<div class="ricld"></div>
-</div>
+		<div id="loaddiv" class="loaddiv" transition:persist="loader">
+			<div id="loader" class="logoload"></div>
+			<Image id="logoload-img" src={loadmg} alt="logospn" class="logoload1"/>
+			<div class="ricld"></div>
+			<div class="ricld"></div>
+			<div class="ricld"></div>
+		</div>
 
-<div id="contents2" class="stack backgrounds">
- <div class="ricsn">
-  ❅
-  </div>
-  <div class="ricsn">
-  ❅
-  </div>
-  <div class="ricsn">
-  ❆
-  </div>
-  <div class="ricsn">
-  ❄
-  </div>
-  <div class="ricsn">
-  ❅
-  </div>
-  <div class="ricsn">
-  ❆
-  </div>
-  <div class="ricsn">
-  ❄
-  </div>
-  <div class="ricsn">
-  ❅
-  </div>
-  <div class="ricsn">
-  ❆
-  </div>
-  <div class="ricsn">
-  ❄
-  </div>
+		<div id="contents2" class="stack backgrounds">
+			<div class="ricsn">❅</div>
+			<div class="ricsn">❅</div>
+			<div class="ricsn">❆</div>
+			<div class="ricsn">❄</div>
+			<div class="ricsn">❅</div>
+			<div class="ricsn">❆</div>
+			<div class="ricsn">❄</div>
+			<div class="ricsn">❅</div>
+			<div class="ricsn">❆</div>
+			<div class="ricsn">❄</div>
+
 			<Nav />
 			<slot />
 			<Footer />
+
+			<Player client:only="react" transition:persist />
 		</div>
 
 		<script>
-			// Add “loaded” class once the document has completely loaded.
-			addEventListener('load', () => document.documentElement.classList.add('loaded'));
-var RicVideos = document.querySelectorAll("video, audio");
-for(var i=0; i<RicVideos.length; i++)
-   RicVideos[i].addEventListener('play', function(){pauseAll(this)}, true);
+			// Function to handle the loader disappearance
+			function setupLoader() {
+				const loaddiv = document.getElementById('loaddiv');
+				const contents2 = document.getElementById('contents2');
+				
+				if (document.readyState === 'complete') {
+					setTimeout(() => {
+						if (loaddiv) loaddiv.style.visibility = "hidden";
+						if (contents2) contents2.style.visibility = "visible";
+					}, 1000);
+				} else {
+					window.addEventListener('load', () => {
+						setTimeout(() => {
+							if (loaddiv) loaddiv.style.visibility = "hidden";
+							if (contents2) contents2.style.visibility = "visible";
+						}, 1000);
+					});
+				}
+			}
 
-function pauseAll(elem){
-	for(var i=0; i<RicVideos.length; i++){
-		//Is this the one we want to play?
-	  	  RicVideos[i].muted=false;
-		if(RicVideos[i] == elem) continue;
-		//Have we already played it && is it already paused?
-		if(RicVideos[i].played.length > 0 && !RicVideos[i].paused){
-		// Then pause it now
-		  RicVideos[i].pause();
-		  RicVideos[i].muted=true;
-		}
-	}
-  }
+			// Run on first load
+			setupLoader();
 
-document.onreadystatechange = function () {
-  var RicState = document.readyState
-  if (RicState == 'interactive') {
-       document.getElementById('contents').style.visibility="hidden";
-  } else if (RicState == 'complete') {
-      setTimeout(function(){
-         document.getElementById('interactive');
-         document.getElementById('loaddiv').style.visibility="hidden";
-         document.getElementById('logoload').style.visibility="hidden";
-         document.getElementById('loader').style.visibility="hidden";
-         document.getElementById('contents2').style.visibility="visible";
-      },1000);
-  }
-}
-</script>
+			// Audio/Video Auto-Pause logic for other elements on the page
+			function initMediaPause() {
+				const RicVideos = document.querySelectorAll("video, audio");
+				RicVideos.forEach(media => {
+					media.addEventListener('play', function() {
+						RicVideos.forEach(other => {
+							if (other !== media) {
+								(other as HTMLMediaElement).pause();
+								(other as HTMLMediaElement).muted = true;
+							}
+						});
+					}, true);
+				});
+			}
+
+			initMediaPause();
+
+			// Re-initialize logic after Astro page transitions
+			document.addEventListener('astro:after-swap', () => {
+				initMediaPause();
+				// Ensure content is visible on the new page
+				const contents2 = document.getElementById('contents2');
+				if (contents2) contents2.style.visibility = "visible";
+			});
+		</script>
 
 		<style>
 			:root {
@@ -126,192 +122,113 @@ document.onreadystatechange = function () {
 				--bg-blend-mode: lighten;
 			}
 
-			/* These backgrounds are displayed below the fold, so we lazy load them
-			   once the `.loaded` class has been set.  */
 			:root.loaded {
 				--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-light-800w.jpg');
 				--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-light-800w.jpg');
 				--bg-image-footer: url('/assets/backgrounds/bg-footer-light-800w.jpg');
-			}
-			:root.loaded.theme-dark {
-				--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-dark-800w.jpg');
-				--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-dark-800w.jpg');
-				--bg-image-footer: url('/assets/backgrounds/bg-footer-dark-800w.jpg');
-			}
-
-			@media (min-width: 50em) {
-				:root {
-					--bg-scale: 1;
-					--bg-image-main: url('/assets/backgrounds/bg-main-light-1440w.jpg');
-				}
-				:root.theme-dark {
-					--bg-image-main: url('/assets/backgrounds/bg-main-dark-1440w.jpg');
-				}
-
-				:root.loaded {
-					--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-light-1440w.jpg');
-					--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-light-1440w.jpg');
-					--bg-image-footer: url('/assets/backgrounds/bg-footer-light-1440w.jpg');
-				}
-				:root.loaded.theme-dark {
-					--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-dark-1440w.jpg');
-					--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-dark-1440w.jpg');
-					--bg-image-footer: url('/assets/backgrounds/bg-footer-dark-1440w.jpg');
-				}
 			}
 
 			.backgrounds {
 				min-height: 100%;
 				isolation: isolate;
 				background:
-					/*noise*/
 					url('/assets/backgrounds/noise.png') top center/220px repeat,
-					/*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
-					/*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
-					/*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
-					/*base*/ var(--gray-999);
-				background-blend-mode: /*noise*/
-					overlay,
-					/*footer*/ var(--bg-blend-mode),
-					/*header1*/ var(--bg-svg-blend-mode),
-					/*header2*/ normal,
-					/*base*/ normal;
-			}
-			@media (forced-colors: active) {
-				/* Deactivate custom backgrounds for high contrast users. */
-				.backgrounds {
-					background: none;
-					background-blend-mode: none;
-					--bg-gradient-size: none;
-				}
+					var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
+					var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
+					var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+					var(--gray-999);
+				background-blend-mode: overlay, var(--bg-blend-mode), var(--bg-svg-blend-mode), normal, normal;
 			}
 
-.loaddiv {
-display: flex;
-width:100vw;
-height:100vh;
-align-items: center;
-justify-content: center;
-background: rgb(51,47,57);
-background: radial-gradient(circle, rgba(51,47,57,1) 0%, rgba(14,4,25,1) 100%);
-position:fixed;
-z-index:9990;
-}
-.logoload {
-display: flex;
-position:relative;
-background-color: purple;
-width: 120px;
-height: 120px;
-border-radius: 50%;
-background: conic-gradient(#3dffc9, #f7c723, #eb0ea5, #3dffc9);
-animation: spin 0.8s linear infinite;
-box-shadow:  0px 0px 150px -75px black;
-border: 0px solid white;
-justify-content:center;
-align-items:center;
-z-index: 9993;
-transition: opacity 0.75s, visibility 0s;
-}
+			/* Loader Styles */
+			.loaddiv {
+				display: flex;
+				width:100vw;
+				height:100vh;
+				align-items: center;
+				justify-content: center;
+				background: radial-gradient(circle, rgba(51,47,57,1) 0%, rgba(14,4,25,1) 100%);
+				position:fixed;
+				top:0;
+				left:0;
+				z-index:9990;
+			}
+			
+			#contents2 {
+				visibility: hidden; /* JavaScript will make this visible after 1s */
+			}
 
-.logoload::before {
-content:"";
-  border: 1px solid #00ff00;
-  content: "";
-  background-color: black;
-  position: absolute;
-  width: 86%;
-  height: 86%;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: inset 0px 0px 110px -70px black;
-}
+			.logoload {
+				display: flex;
+				position:relative;
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				background: conic-gradient(#3dffc9, #f7c723, #eb0ea5, #3dffc9);
+				animation: spin 0.8s linear infinite;
+				box-shadow: 0px 0px 150px -75px black;
+				justify-content:center;
+				align-items:center;
+				z-index: 9993;
+			}
 
-.logoload1 {
-position:absolute;
-width:120px;
-height:120px;
-z-index:9998;
-}
+			.logoload::before {
+				content: "";
+				background-color: black;
+				position: absolute;
+				width: 86%;
+				height: 86%;
+				border-radius: 50%;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(-360deg); }
-}
+			.logoload1 {
+				position:absolute;
+				width:120px;
+				height:120px;
+				z-index:9998;
+			}
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(-360deg); }
-}
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(-360deg); }
+			}
 
-@-webkit-keyframes spin2 {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
+			.ricld {
+				position:absolute;
+				width: 230px;
+				height: 230px;
+				border-radius: 50%;
+				z-index: 9997;
+			}
 
-@keyframes spin2 {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+			.ricld:nth-child(5){
+				border-bottom: 6px solid red;
+				animation: spinric1 1.2s linear infinite;
+			}
+			.ricld:nth-child(4){
+				border-right: 6px solid blue;
+				animation: spinric2 0.9s linear infinite;
+			}
+			.ricld:nth-child(3){
+				border-top: 6px solid green;
+				animation: spinric3 1.2s linear infinite;
+			}
 
-.ricld {
-  position:absolute;
-  display:flex;
-  justify-content:center;
-  align-items:center;  
-  width: 230px;
-  height: 230px;
-  border-radius: 50%;
-  box-shadow:  0px 0px 150px -75px black;
-  border: 0px solid black;
-  z-index: 9997;
-}
-
-.ricld:nth-child(5){
-  border-bottom-width: 6px;
-  border-color: red;
-  background-color: rgba(105, 105, 105, 0.041);
-  animation: spinric1 1.2s linear infinite;
-}
-.ricld:nth-child(4){
-  border-right-width: 6px;
-  background-color: rgba(105, 105, 105, 0.041);
-  border-color: blue;
-  animation: spinric2 0.9s linear infinite;
-}
-.ricld:nth-child(3){
-  border-top-width: 6px;
-  background-color: rgba(105, 105, 105, 0.041);
-  border-color: green;
-  animation: spinric3 1.2s linear infinite;
-}
-@keyframes spinric1 {
-  0% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-  }
-}
-@keyframes spinric2 {
-  0% {
-    transform: rotateX(53deg) rotateY(10deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(53deg) rotateY(10deg) rotateZ(360deg);
-  }
-}
-@keyframes spinric3 {
-  0% {
-    transform: rotateX(35deg) rotateY(45deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(45deg) rotateZ(360deg);
-  }
-}
-</style>
-
+			@keyframes spinric1 {
+				0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }
+				100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); }
+			}
+			@keyframes spinric2 {
+				0% { transform: rotateX(53deg) rotateY(10deg) rotateZ(0deg); }
+				100% { transform: rotateX(53deg) rotateY(10deg) rotateZ(360deg); }
+			}
+			@keyframes spinric3 {
+				0% { transform: rotateX(35deg) rotateY(45deg) rotateZ(0deg); }
+				100% { transform: rotateX(35deg) rotateY(45deg) rotateZ(360deg); }
+			}
+		</style>
 	</body>
 </html>
