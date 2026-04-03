@@ -3,7 +3,7 @@
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import Player from '../components/Player.jsx'; // Make sure this path is correct
+import Player from '../components/Player.jsx';
 import loadmg from '../../public/logo2sm.png';
 import { Image } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
@@ -22,7 +22,7 @@ const { title, description } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body>
-		<div id="loaddiv" class="loaddiv" transition:persist="loader">
+		<div id="loaddiv" class="loaddiv" transition:persist="loader-wrapper">
 			<div id="loader" class="logoload"></div>
 			<Image id="logoload-img" src={loadmg} alt="logospn" class="logoload1"/>
 			<div class="ricld"></div>
@@ -42,38 +42,51 @@ const { title, description } = Astro.props;
 			<div class="ricsn">❆</div>
 			<div class="ricsn">❄</div>
 
-			<Nav />
-			<slot />
+			<div transition:persist="navigation">
+				<Nav />
+			</div>
+
+			<main>
+				<slot />
+			</main>
+
 			<Footer />
 
 			<Player client:only="react" transition:persist />
 		</div>
 
 		<script>
-			// Function to handle the loader disappearance
-			function setupLoader() {
+			/**
+			 * Handles the loading screen. 
+			 * We only want the long 1s delay on the VERY first visit.
+			 */
+			function handleLoading() {
 				const loaddiv = document.getElementById('loaddiv');
 				const contents2 = document.getElementById('contents2');
 				
+				if (!loaddiv || !contents2) return;
+
+				// If it's a page transition (not a hard reload), show content immediately
+				if (window.name === "is-navigating") {
+					loaddiv.style.display = "none";
+					contents2.style.visibility = "visible";
+					return;
+				}
+
+				// Hard reload logic
 				if (document.readyState === 'complete') {
 					setTimeout(() => {
-						if (loaddiv) loaddiv.style.visibility = "hidden";
-						if (contents2) contents2.style.visibility = "visible";
+						loaddiv.style.display = "none";
+						contents2.style.visibility = "visible";
+						window.name = "is-navigating"; // Mark as visited
 					}, 1000);
-				} else {
-					window.addEventListener('load', () => {
-						setTimeout(() => {
-							if (loaddiv) loaddiv.style.visibility = "hidden";
-							if (contents2) contents2.style.visibility = "visible";
-						}, 1000);
-					});
 				}
 			}
 
-			// Run on first load
-			setupLoader();
+			// Run on initial load
+			window.addEventListener('load', handleLoading);
 
-			// Audio/Video Auto-Pause logic for other elements on the page
+			// Logic for other media elements
 			function initMediaPause() {
 				const RicVideos = document.querySelectorAll("video, audio");
 				RicVideos.forEach(media => {
@@ -90,57 +103,22 @@ const { title, description } = Astro.props;
 
 			initMediaPause();
 
-			// Re-initialize logic after Astro page transitions
+			// Ensure content is visible after Astro swaps pages
 			document.addEventListener('astro:after-swap', () => {
 				initMediaPause();
-				// Ensure content is visible on the new page
 				const contents2 = document.getElementById('contents2');
+				const loaddiv = document.getElementById('loaddiv');
 				if (contents2) contents2.style.visibility = "visible";
+				if (loaddiv) loaddiv.style.display = "none";
 			});
 		</script>
 
-		<style>
-			:root {
-				--_placeholder-bg: linear-gradient(transparent, transparent);
-				--bg-image-main: url('/assets/backgrounds/bg-main-light-800w.jpg');
-				--bg-image-main-curves: url('/assets/backgrounds/bg-main-light.svg');
-				--bg-image-subtle-1: var(--_placeholder-bg);
-				--bg-image-subtle-2: var(--_placeholder-bg);
-				--bg-image-footer: var(--_placeholder-bg);
-				--bg-svg-blend-mode: overlay;
-				--bg-blend-mode: darken;
-				--bg-image-aspect-ratio: 2.25;
-				--bg-scale: 1.68;
-				--bg-aspect-ratio: calc(var(--bg-image-aspect-ratio) / var(--bg-scale));
-				--bg-gradient-size: calc(var(--bg-scale) * 100%);
+		<style is:global>
+			/* is:global ensures styles aren't stripped during swaps */
+			#contents2 {
+				visibility: hidden;
 			}
 
-			:root.theme-dark {
-				--bg-image-main: url('/assets/backgrounds/bg-main-dark-800w.jpg');
-				--bg-image-main-curves: url('/assets/backgrounds/bg-main-dark.svg');
-				--bg-svg-blend-mode: darken;
-				--bg-blend-mode: lighten;
-			}
-
-			:root.loaded {
-				--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-light-800w.jpg');
-				--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-light-800w.jpg');
-				--bg-image-footer: url('/assets/backgrounds/bg-footer-light-800w.jpg');
-			}
-
-			.backgrounds {
-				min-height: 100%;
-				isolation: isolate;
-				background:
-					url('/assets/backgrounds/noise.png') top center/220px repeat,
-					var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
-					var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
-					var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
-					var(--gray-999);
-				background-blend-mode: overlay, var(--bg-blend-mode), var(--bg-svg-blend-mode), normal, normal;
-			}
-
-			/* Loader Styles */
 			.loaddiv {
 				display: flex;
 				width:100vw;
@@ -152,10 +130,6 @@ const { title, description } = Astro.props;
 				top:0;
 				left:0;
 				z-index:9990;
-			}
-			
-			#contents2 {
-				visibility: hidden; /* JavaScript will make this visible after 1s */
 			}
 
 			.logoload {
@@ -204,18 +178,9 @@ const { title, description } = Astro.props;
 				z-index: 9997;
 			}
 
-			.ricld:nth-child(5){
-				border-bottom: 6px solid red;
-				animation: spinric1 1.2s linear infinite;
-			}
-			.ricld:nth-child(4){
-				border-right: 6px solid blue;
-				animation: spinric2 0.9s linear infinite;
-			}
-			.ricld:nth-child(3){
-				border-top: 6px solid green;
-				animation: spinric3 1.2s linear infinite;
-			}
+			.ricld:nth-child(5){ border-bottom: 6px solid red; animation: spinric1 1.2s linear infinite; }
+			.ricld:nth-child(4){ border-right: 6px solid blue; animation: spinric2 0.9s linear infinite; }
+			.ricld:nth-child(3){ border-top: 6px solid green; animation: spinric3 1.2s linear infinite; }
 
 			@keyframes spinric1 {
 				0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }
@@ -228,6 +193,17 @@ const { title, description } = Astro.props;
 			@keyframes spinric3 {
 				0% { transform: rotateX(35deg) rotateY(45deg) rotateZ(0deg); }
 				100% { transform: rotateX(35deg) rotateY(45deg) rotateZ(360deg); }
+			}
+
+			.backgrounds {
+				min-height: 100vh;
+				isolation: isolate;
+				background:
+					url('/assets/backgrounds/noise.png') top center/220px repeat,
+					var(--bg-image-footer, none) bottom center/var(--bg-gradient-size, 100%) no-repeat,
+					var(--bg-image-main-curves, none) top center/var(--bg-gradient-size, 100%) no-repeat,
+					var(--bg-image-main, none) top center/var(--bg-gradient-size, 100%) no-repeat,
+					#050505;
 			}
 		</style>
 	</body>
