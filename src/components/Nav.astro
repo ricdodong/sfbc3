@@ -21,9 +21,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	{ label: 'YouTube', href: 'https://www.youtube.com/@sibagatfbc/', icon: 'youtube-logo' },
 	{ label: 'Tiktok', href: 'https://tiktok.com/@sibagatfbc/', icon: 'tiktok-logo' },
 ];
-
-// Helper to determine if a link is active based on current URL
-const currentPath = Astro.url.pathname;
 ---
 
 <nav style="height:90px;">
@@ -41,44 +38,55 @@ const currentPath = Astro.url.pathname;
 		</menu-button>
 	</div>
 
+	<noscript>
+		<ul class="nav-items">
+			{textLinks.map(({ label, href }) => (
+				<li>
+					<a
+						aria-current={Astro.url.pathname === href}
+						class:list={[
+							'link',
+							{
+								active: Astro.url.pathname === href || (href !== '/' && Astro.url.pathname.startsWith(href)),
+							},
+						]}
+						href={href}
+					>
+						{label}
+					</a>
+				</li>
+			))}
+		</ul>
+	</noscript>
+
 	<div id="menu-content" hidden>
 		<ul class="nav-items">
-			{
-				textLinks.map(({ label, href }) => {
-					// Logic: Home must be exact match, others match if path starts with href
-					const isActive = href === '/' 
-						? currentPath === href 
-						: currentPath === href || currentPath.startsWith(href);
-					
-					return (
-						<li>
-							<a
-								aria-current={isActive ? 'page' : undefined}
-								class:list={[
-									'link',
-									{ active: isActive },
-								]}
-								href={href}
-							>
-								{label}
-							</a>
-						</li>
-					)
-				})
-			}
+			{textLinks.map(({ label, href }) => (
+				<li>
+					<a
+						aria-current={Astro.url.pathname === href}
+						class:list={[
+							'link',
+							{
+								active: Astro.url.pathname === href || (href !== '/' && Astro.url.pathname.startsWith(href)),
+							},
+						]}
+						href={href}
+					>
+						{label}
+					</a>
+				</li>
+			))}
 		</ul>
 		<div class="menu-footer">
 			<div class="socials">
-				{
-					iconLinks.map(({ href, icon, label }) => (
-						<a href={href} class="social">
-							<span class="sr-only">{label}</span>
-							<Icon icon={icon} />
-						</a>
-					))
-				}
+				{iconLinks.map(({ href, icon, label }) => (
+					<a href={href} class="social">
+						<span class="sr-only">{label}</span>
+						<Icon icon={icon} />
+					</a>
+				))}
 			</div>
-
 			<div class="theme-toggle">
 				<ThemeToggle />
 			</div>
@@ -96,7 +104,7 @@ const currentPath = Astro.url.pathname;
 				const menu = document.getElementById('menu-content');
 				if (!template || !menu) return;
 
-				// Clear existing button to prevent duplicates on swap
+				// Clear and inject button to ensure logic binds correctly after page swaps
 				this.innerHTML = '';
 				this.appendChild(template.content.cloneNode(true));
 
@@ -129,7 +137,7 @@ const currentPath = Astro.url.pathname;
 	// Initialize on first load
 	initMenu();
 
-	// Re-run on every View Transition to refresh state and scripts
+	// Re-initialize after Astro page transitions to keep navigation functional
 	document.addEventListener('astro:after-swap', initMenu);
 </script>
 
@@ -172,7 +180,7 @@ const currentPath = Astro.url.pathname;
 
 	.menu-button[aria-expanded='true'] {
 		color: var(--gray-0);
-		background: linear-gradient(180deg, var(--gray-600), transparent),
+		background: linear-gradient(180deg, var(--gray-600), transparent), 
 			radial-gradient(var(--gray-900), var(--gray-800) 150%);
 	}
 
@@ -301,8 +309,8 @@ const currentPath = Astro.url.pathname;
 		.link {
 			padding: 0.5rem 1rem;
 			border-radius: 999rem;
-			transition:
-				color var(--theme-transition),
+			transition: 
+				color var(--theme-transition), 
 				background-color var(--theme-transition);
 		}
 
@@ -337,6 +345,12 @@ const currentPath = Astro.url.pathname;
 			display: flex;
 			justify-content: flex-end;
 			gap: 0;
+		}
+	}
+
+	@media (forced-colors: active) {
+		.link.active {
+			color: SelectedItem;
 		}
 	}
 </style>
