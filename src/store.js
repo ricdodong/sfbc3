@@ -15,6 +15,6 @@ export const $playlist = atom([
 
 export const $currentTrack = atom("https://www.youtube.com/watch?v=CaTeyPHbY1k");
 export const $trackTitle = atom("Nganong Dili Makaluwas Ang Atong Maayong Buhat by Pastor Reynaldo Subrabas");
-export const $isPlaying = atom(false); 
+export const $isPlaying = atom(true); 
 // New state for the collapsible feature
 export const $isCollapsed = atom(false);
