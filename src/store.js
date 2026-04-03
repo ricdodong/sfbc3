@@ -16,5 +16,5 @@ export const $playlist = atom([
 
 // Initial State: Load the first item from the playlist by default
 export const $currentTrack = atom("https://www.youtube.com/watch?v=CaTeyPHbY1k");
-export const $trackTitle = atom("Sunday Service - Worship");
+export const $trackTitle = atom("Nganong Dili Makaluwas Ang Atong Maayong Buhat by Pastor Reynaldo Subrabas");
 export const $isPlaying = atom(false); // Set to true if you want it to autoplay
