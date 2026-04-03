@@ -3,8 +3,9 @@ import { getCollection } from "astro:content";
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Player from '../components/Player';
+
 // Component Imports
+import Player from '../components/Player';
 import CallToAction from "../components/CallToAction.astro";
 import Grid from "../components/Grid.astro";
 import Hero from "../components/Hero.astro";
@@ -13,6 +14,7 @@ import Pill from "../components/Pill.astro";
 import EventsPreview from "../components/EventsPreview.astro";
 import SermonsPreview from "../components/SermonsPreview.astro";
 import MinistriesPreview from "../components/MinistriesPreview.astro";
+
 // Page section components
 import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/Skills.astro";
@@ -20,12 +22,13 @@ import OutreachPreview from "../components/OutreachPreview.astro";
 import LeadersPreview from "../components/LeadersPreview.astro";
 import { Image } from 'astro:assets';
 import myChurchImg from '../../public/assets/sfbc-bg.jpg';
-// Content Fetching: List four most recent events projects
+
+// Content Fetching: List three most recent events projects
 const events = (await getCollection("events"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
 
-// Content Fetching: List four most recent sermons projects
+// Content Fetching: List three most recent sermons projects
 const sermons = (await getCollection("sermons"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
@@ -40,17 +43,14 @@ const outreach = (await getCollection("outreach"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 4);
 
-//leadership
+// leadership
 const leadership = (await getCollection("leadership"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 15);
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
 ---
 
 <BaseLayout>
-  <div class="stack gap-20 lg:gap-48">
+  <div class="stack gap-20 lg:gap-48 page-container">
     <div class="wrapper stack gap-8 lg:gap-20">
       <header class="hero">
         <Hero
@@ -59,20 +59,11 @@ const leadership = (await getCollection("leadership"))
           align="start"
         >
           <div class="roles">
-            <Pill
-              ><Icon icon="bible-logo" size="1.33em" color="white" /> Word of God</Pill
-            >
+            <Pill><Icon icon="bible-logo" size="1.33em" color="white" /> Word of God</Pill>
             <Pill><Icon icon="bible-logo" size="1.33em" /> Faith</Pill>
             <Pill><Icon icon="pencil-line" size="1.33em" /> Prayer</Pill>
           </div>
         </Hero>
-<!--
-        <img
-          alt="Sibagat Fundamental Baptist Church"
-          width="480px"
-          height="500px"
-          src="/assets/sfbc-bg.jpg"
-        /> -->
         <Image src={myChurchImg} alt="Sibagat Fundamental Baptist Church" />
       </header>
 
@@ -80,7 +71,7 @@ const leadership = (await getCollection("leadership"))
     </div>
 
     <main class="wrapper stack gap-20 lg:gap-48">
-            <section class="section with-background with-cta">
+      <section class="section with-background with-cta">
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Recent Events</h3>
           <p>Find out our latest events.</p>
@@ -89,9 +80,9 @@ const leadership = (await getCollection("leadership"))
         <div class="gallery">
           <Grid variant="offset">
             {
-              events.map((events) => (
+              events.map((eventItem) => (
                 <li>
-                  <EventsPreview events={events} />
+                  <EventsPreview events={eventItem} />
                 </li>
               ))
             }
@@ -115,9 +106,9 @@ const leadership = (await getCollection("leadership"))
         <div class="gallery">
           <Grid variant="offset">
             {
-              sermons.map((sermons) => (
+              sermons.map((sermonItem) => (
                 <li>
-                  <SermonsPreview sermons={sermons} />
+                  <SermonsPreview sermons={sermonItem} />
                 </li>
               ))
             }
@@ -136,17 +127,16 @@ const leadership = (await getCollection("leadership"))
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Our Ministries</h3>
           <p>
-            Take a look below at some of our featured ministries from the
-            past few years.
+            Take a look below at some of our featured ministries from the past few years.
           </p>
         </header>
 
         <div class="gallery">
           <Grid variant="offset">
             {
-              ministries.map((ministries) => (
+              ministries.map((ministryItem) => (
                 <li>
-                  <MinistriesPreview ministries={ministries} />
+                  <MinistriesPreview ministries={ministryItem} />
                 </li>
               ))
             }
@@ -172,9 +162,9 @@ const leadership = (await getCollection("leadership"))
         <div class="gallery">
           <Grid variant="offset">
             {
-              outreach.map((outreach) => (
+              outreach.map((outreachItem) => (
                 <li>
-                  <OutreachPreview outreach={outreach} />
+                  <OutreachPreview outreach={outreachItem} />
                 </li>
               ))
             }
@@ -193,22 +183,16 @@ const leadership = (await getCollection("leadership"))
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Pastors & Workers</h3>
           <p>
-            The work of our ministries is not an easy task. To fulfill these
-            missions, God has sent His workers to guide us, train us all and
-            find more lost souls. as it is said in (Ephesians 4:11-16), they are
-            one of the reasons why we know Who and What God is. Our Pastors are
-            not just there on their own. They are the gift from our Holy God to
-            our local church. That is why we are so thankful to have our
-            Pastors/Workers in our Church.
+            The work of our ministries is not an easy task. To fulfill these missions, God has sent His workers to guide us, train us all and find more lost souls.
           </p>
         </header>
         <div class="gallery" style="justify-content: center; display:flex;">
           <center>
             <Grid variant="ric3">
               {
-                leadership.map((leadership) => (
+                leadership.map((leaderItem) => (
                   <li>
-                    <LeadersPreview leadership={leadership} />
+                    <LeadersPreview leadership={leaderItem} />
                   </li>
                 ))
               }
@@ -220,10 +204,16 @@ const leadership = (await getCollection("leadership"))
 
     <ContactCTA />
   </div>
-<Player client:load />
+
+  <Player client:load />
 </BaseLayout>
 
 <style>
+  /* Prevents content from being cut off by the fixed player at the bottom */
+  .page-container {
+    padding-bottom: 120px;
+  }
+
   .hero {
     display: flex;
     flex-direction: column;
@@ -232,12 +222,12 @@ const leadership = (await getCollection("leadership"))
     background: rgb(51, 47, 57);
     background: radial-gradient(
       circle,
-      rgba(51, 47, 57, 0.09287464985994398) 0%,
-      rgba(111, 8, 221, 0.07326680672268904) 100%
+      rgba(51, 47, 57, 0.09) 0%,
+      rgba(111, 8, 221, 0.07) 100%
     );
     border: 0px solid var(--gray-800);
     border-radius: 1.5rem;
-	padding: 1.5rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow-sm);
   }
 
@@ -255,7 +245,7 @@ const leadership = (await getCollection("leadership"))
 
   @media (min-width: 50em) {
     .hero {
-		border-radius: 1.5rem;
+      border-radius: 1.5rem;
       display: grid;
       grid-template-columns: 6fr 4fr;
       padding-inline: 2.5rem;
@@ -288,7 +278,6 @@ const leadership = (await getCollection("leadership"))
 
   .with-background::before {
     --hero-bg: var(--bg-image-subtle-2);
-
     content: "";
     position: absolute;
     pointer-events: none;
