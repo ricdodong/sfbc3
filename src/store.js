@@ -7,7 +7,7 @@ export const $playlist = atom([
 
 export const $currentTrack = atom("https://www.youtube.com/watch?v=CaTeyPHbY1k");
 export const $trackTitle = atom("Nganong Dili Makaluwas Ang Atong Maayong Buhat");
-export const $isPlaying = atom(true);
+export const $isPlaying = atom(false);
 export const $isCollapsed = atom(false);
 
 // New: Progress tracking
