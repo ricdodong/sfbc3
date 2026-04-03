@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write  # Changed to 'write' so the bot can save the lockfile
   pages: write
   id-token: write
 
@@ -36,7 +36,12 @@ jobs:
             exit 0
           elif [ -f "${{ github.workspace }}/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
+            # If lockfile doesn't exist, use 'install' to generate one
+            if [ ! -f "${{ github.workspace }}/package-lock.json" ]; then
+              echo "command=install" >> $GITHUB_OUTPUT
+            else
+              echo "command=ci" >> $GITHUB_OUTPUT
+            fi
             echo "runner=npx" >> $GITHUB_OUTPUT
             exit 0
           else
@@ -48,7 +53,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          # Cache line removed to prevent "lockfile not found" error
+          cache: 'npm'
+          # Cache by package.json if lockfile is missing
+          cache-dependency-path: '**/package.json'
 
       - name: Setup Pages
         id: pages
@@ -57,6 +64,18 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
+
+      # NEW STEP: Auto-save the lockfile back to your repo
+      - name: Save Lockfile
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -f "package-lock.json" ] && [ ! -f "${{ github.workspace }}/package-lock.json" ]; then
+            git add package-lock.json
+            git commit -m "chore: auto-generate package-lock.json"
+            git push
+          fi
+        continue-on-error: true
 
       - name: Build with Astro
         run: |
