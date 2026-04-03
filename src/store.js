@@ -3,7 +3,7 @@ import { atom } from 'nanostores';
 // The Playlist Array
 export const $playlist = atom([
   {
-    title: "Sunday Service - Worship",
+    title: "Nganong Dili Makaluwas Ang Atong Maayong Buhat by Pastor Reynaldo Subrabas",
     url: "https://www.youtube.com/watch?v=CaTeyPHbY1k",
     type: "video"
   },
