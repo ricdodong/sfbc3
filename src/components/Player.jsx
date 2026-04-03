@@ -16,11 +16,10 @@ export default function Player() {
 
   useEffect(() => { setIsMounted(true); }, []);
 
-  // Format time (seconds to MM:SS)
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    return `${mins}:${secs < 10 ? '0' : ''}${seconds}`;
   };
 
   const handleSeek = (e) => {
@@ -33,8 +32,7 @@ export default function Player() {
 
   return (
     <>
-      {/* THE ENGINE: Always rendered so music never stops 
-      */}
+      {/* THE ENGINE (Hidden) */}
       <div className="hidden">
         <ReactPlayer
           ref={playerRef}
@@ -48,61 +46,76 @@ export default function Player() {
       </div>
 
       {isCollapsed ? (
-        /* MINI PLAYER */
-        <div className="fixed bottom-6 right-6 z-[1000] flex flex-col items-center gap-2">
+        /* MINI PLAYER (Floating Orb) */
+        <div className="fixed bottom-6 right-6 z-[1000]">
           <button 
             onClick={() => $isCollapsed.set(false)}
-            className="w-16 h-16 bg-purple-600 rounded-full shadow-2xl flex items-center justify-center border-2 border-white/20 hover:scale-110 transition-all"
+            className="group relative w-16 h-16 bg-gradient-to-tr from-purple-700 to-indigo-600 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.4)] flex items-center justify-center border border-white/20 hover:scale-110 transition-all duration-300"
           >
-            <span className="text-2xl">{isPlaying ? "🎵" : "▶"}</span>
-            {isPlaying && <span className="absolute inset-0 rounded-full border-2 border-purple-400 animate-ping"></span>}
+            <span className="text-2xl z-10">{isPlaying ? "⏸" : "▶"}</span>
+            {isPlaying && (
+              <span className="absolute inset-0 rounded-full border-2 border-purple-400 animate-ping opacity-50"></span>
+            )}
+            <div className="absolute -top-12 right-0 bg-black/80 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              Expand Player
+            </div>
           </button>
         </div>
       ) : (
-        /* FULL PLAYER */
-        <div className="fixed bottom-0 left-0 w-full z-[999] p-4">
-          <div className="max-w-4xl mx-auto bg-zinc-900/95 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-4">
+        /* FULL PROFESSIONAL PLAYER (Floating Glass Dashboard) */
+        <div className="fixed bottom-6 right-6 left-6 md:left-auto md:w-[400px] z-[1000] animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="relative overflow-hidden bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-4">
             
-            {/* Seek Bar */}
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-[10px] text-zinc-400 w-10">{formatTime(progress)}</span>
-              <input
-                type="range"
-                min={0}
-                max={duration}
-                value={progress}
-                onChange={handleSeek}
-                className="flex-1 h-1 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
-              />
-              <span className="text-[10px] text-zinc-400 w-10">{formatTime(duration)}</span>
+            {/* Header */}
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex-1 min-w-0">
+                <p className="text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-1">Now Playing</p>
+                <h3 className="text-white font-semibold truncate text-sm">{title || "Unknown Track"}</h3>
+              </div>
+              <button 
+                onClick={() => $isCollapsed.set(true)}
+                className="text-slate-400 hover:text-white p-1"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+              </button>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
-              {/* Info */}
-              <div className="flex items-center gap-3 w-1/3 min-w-0">
-                <div className="w-10 h-10 rounded bg-purple-800 flex-shrink-0 flex items-center justify-center">⛪</div>
-                <div className="truncate">
-                  <p className="text-xs font-bold text-white truncate">{title}</p>
-                  <p className="text-[10px] text-zinc-500 uppercase">Sibagat FBC</p>
-                </div>
+            {/* Progress Section */}
+            <div className="space-y-1 mb-4">
+              <input
+                type="range"
+                min="0"
+                max={duration || 0}
+                value={progress}
+                onChange={handleSeek}
+                className="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500 hover:accent-purple-400 transition-all"
+              />
+              <div className="flex justify-between text-[10px] text-slate-400 font-medium">
+                <span>{formatTime(progress)}</span>
+                <span>{formatTime(duration)}</span>
               </div>
+            </div>
 
-              {/* Controls */}
-              <div className="flex items-center gap-4">
-                <button 
-                  onClick={() => $isPlaying.set(!isPlaying)}
-                  className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 transition"
-                >
-                  {isPlaying ? "⏸" : "▶"}
-                </button>
-              </div>
+            {/* Controls */}
+            <div className="flex items-center justify-center gap-6">
+              <button className="text-slate-400 hover:text-purple-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+              </button>
+              
+              <button 
+                onClick={() => $isPlaying.set(!isPlaying)}
+                className="w-12 h-12 bg-white text-slate-900 rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
+              >
+                {isPlaying ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                )}
+              </button>
 
-              {/* Minimize */}
-              <div className="w-1/3 flex justify-end">
-                <button onClick={() => $isCollapsed.set(true)} className="text-zinc-500 hover:text-white p-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m7 15 5 5 5-5"/></svg>
-                </button>
-              </div>
+              <button className="text-slate-400 hover:text-purple-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+              </button>
             </div>
           </div>
         </div>
