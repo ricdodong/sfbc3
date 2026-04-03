@@ -22,6 +22,8 @@ const { title, description } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body>
+		<Player client:only="react" transition:persist="audio-player" />
+
 		<div id="loaddiv" class="loaddiv" transition:persist="loader">
 			<div id="loader" class="logoload"></div>
 			<Image id="logoload-img" src={loadmg} alt="logospn" class="logoload1"/>
@@ -42,7 +44,7 @@ const { title, description } = Astro.props;
 			<div class="ricsn">❆</div>
 			<div class="ricsn">❄</div>
 
-			<div transition:persist="nav-container">
+			<div transition:persist="nav-wrapper">
 				<Nav />
 			</div>
 
@@ -51,18 +53,13 @@ const { title, description } = Astro.props;
 			</main>
 
 			<Footer />
-
-			<Player client:only="react" transition:persist />
 		</div>
 
 		<script>
-			/** * Loader Logic 
-			 */
 			function handleLoader() {
 				const loaddiv = document.getElementById('loaddiv');
 				const contents2 = document.getElementById('contents2');
 				
-				// On hard reload
 				if (document.readyState === 'complete') {
 					setTimeout(() => {
 						if (loaddiv) loaddiv.style.visibility = "hidden";
@@ -73,9 +70,7 @@ const { title, description } = Astro.props;
 
 			window.addEventListener('load', handleLoader);
 
-			/**
-			 * Media Pause Logic 
-			 */
+			// Logic to pause other media if a new one starts
 			function initMediaPause() {
 				var RicVideos = document.querySelectorAll("video, audio");
 				for(var i=0; i<RicVideos.length; i++) {
@@ -95,10 +90,7 @@ const { title, description } = Astro.props;
 
 			initMediaPause();
 
-			/**
-			 * Astro Transition Logic
-			 * Ensures UI is visible and scripts re-run after a page swap
-			 */
+			// Re-run visibility check after page swap
 			document.addEventListener('astro:after-swap', () => {
 				initMediaPause();
 				const contents2 = document.getElementById('contents2');
@@ -107,12 +99,15 @@ const { title, description } = Astro.props;
 				if (loaddiv) loaddiv.style.visibility = "hidden";
 			});
 
-			// Add “loaded” class to document
 			document.documentElement.classList.add('loaded');
 		</script>
 
 		<style is:global>
-			/* ROOT VARIABLES - RESTORED */
+			/* Critical for UI visibility during transitions */
+			#contents2 {
+				visibility: hidden;
+			}
+
 			:root {
 				--_placeholder-bg: linear-gradient(transparent, transparent);
 				--bg-image-main: url('/assets/backgrounds/bg-main-light-800w.jpg');
@@ -141,7 +136,6 @@ const { title, description } = Astro.props;
 				--bg-image-footer: url('/assets/backgrounds/bg-footer-light-800w.jpg');
 			}
 
-			/* BACKGROUNDS ENGINE - RESTORED */
 			.backgrounds {
 				min-height: 100%;
 				isolation: isolate;
@@ -154,7 +148,6 @@ const { title, description } = Astro.props;
 				background-blend-mode: overlay, var(--bg-blend-mode), var(--bg-svg-blend-mode), normal, normal;
 			}
 
-			/* LOADER UI - RESTORED */
 			.loaddiv {
 				display: flex;
 				width:100vw;
@@ -167,10 +160,6 @@ const { title, description } = Astro.props;
 				z-index:9990;
 			}
 			
-			#contents2 {
-				visibility: hidden;
-			}
-
 			.logoload {
 				display: flex;
 				position:relative;
